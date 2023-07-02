@@ -1,5 +1,11 @@
 # Aplikasi Topsis
 
+## Dibuat Oleh
+1. Alfian (UI/UX)
+2. Benaya (Backend)
+3. Fauzan (Frontend)
+4. Rafi Fajar (Frontend/Backend)
+
 ## Spesifikasi (v:1.0)
 ### Database :
 - Table :

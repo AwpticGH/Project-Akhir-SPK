@@ -25,5 +25,13 @@
 - Delete :
 1. alternatives
 
-### Aplikasi :
-1. Algoritma perhitungan topsis dari suatu alternatif dengan nilai matriksnya
+### Algorithm :
+1. Perhitungan topsis dari suatu alternatif dengan nilai matriksnya
+
+### Frontend :
+1. Halaman input employee
+2. Halaman input matriks
+3. Halaman baca hasil perhitungan
+4. Halaman baca criteria
+5. Halaman login
+6. Halaman baca employee

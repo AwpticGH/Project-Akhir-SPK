@@ -1,6 +1,6 @@
 // dependencies
 /* personal
-* String Genrator
+* String Generator
 * Router
 * */
 const StringGenerator = require("./src/helper/generator/StringGenerator");
@@ -18,7 +18,6 @@ app.set("trust proxy", true);
 app.set("view engine", "ejs");
 
 if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === undefined) {
-    console.log(`env = ${process.env.NODE_ENV}`);
     const liveReload = require("livereload");
     const connectLiveReload = require("connect-livereload");
 
@@ -51,6 +50,7 @@ app.use(ClientRouter);
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`App Started! Listening On Port ${PORT}`);
+    console.log(`env = ${process.env.NODE_ENV}`);
 });
 
 module.exports = app;

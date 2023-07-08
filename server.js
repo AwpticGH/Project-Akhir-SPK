@@ -47,7 +47,7 @@ app.use(express.static(path.join(__dirname, "/web/resources")));
 // personal
 app.use(ClientRouter);
 
-const PORT = 3000;
+const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`App Started! Listening On Port ${PORT}`);
     console.log(`env = ${process.env.NODE_ENV}`);

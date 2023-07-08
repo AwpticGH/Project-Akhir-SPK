@@ -25,5 +25,12 @@
     "connect-livereload": "^0.6.1",
     "livereload": "^0.9.3",
     "nodemon": "^2.0.22"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "./web/*",
+      "./src/*"
+    ],
+    "ext": "json, ejs, css, js"
   }
 }

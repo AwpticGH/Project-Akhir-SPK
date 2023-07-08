@@ -1,12 +1,18 @@
 {
   "name": "project-akhir-spk",
   "version": "1.0.0",
-  "description": "Tugas Akhir Mata Kuliah SPK Dengan Menggunakan Perhitungan TOPSIS",
+  "description": "Tugas Akhir Mata Kuliah SPK Dengan Menggunakan Perhitungan TOPSIS (Semester 4)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "nodemon server.js"
   },
+  "keywords": [
+    "spk",
+    "topsis",
+    "karyawan",
+    "sistem-penilaian"
+  ],
   "author": "Alfian Fakhrudin, Benaya Adi Sahat, M. Fauzan Muharram, Rafi Fajar Sulaiman",
   "license": "ISC",
   "dependencies": {

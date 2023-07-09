@@ -13,17 +13,18 @@
     - uid
     - first_name
     - last_name
-    - date_of_birth
-    - division_id
+    - datetime_of_employment
+    - division_uid
 2. matrix_scores
     - uid
     - year
     - score
-    - criteria_id
-3. criterias
+    - criteria_uid
+    - employee_uid
+3. criteria
     - uid
     - name
-    - criteria_type_id
+    - criteria_type_uid
 4. criteria_types
     - uid
     - type
@@ -33,26 +34,26 @@
     - password
     - first_name
     - last_name
-    - division_id
+    - division_uid
 6. divisions
     - uid
     - name
 
 - Create :
-1. employees
-2. matrix_scores
+1. employees -> createOne
+2. matrix_scores -> createMany
 
 - Read :
-1. employees
-2. matrix_scores
-3. criterias
-4. supervisors
+1. employees -> readOne, readMany(by division_uid)
+2. matrix_scores -> readMany(by employee_uid)
+3. criteria -> readAll / readMany
+4. supervisors -> readOne(by username and password)
 
 - Update :
-1. employees
+1. employees -> updateOne
 
 - Delete :
-1. alternatives
+1. employees -> deleteOne
 
 ### Algorithm :
 1. Perhitungan topsis dari suatu alternatif dengan nilai matriksnya
@@ -101,7 +102,7 @@
     - row number (0)
     - row criterias.id (1)
     - row criterias.name (2)
-5. auth/index.js (landing page)
+5. auth/indexDivisionController.js (landing page)
     - input username
     - input password
     - input submit button

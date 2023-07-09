@@ -2,16 +2,16 @@ const BaseModel = require("../parent/BaseModel");
 const CriteriaSchemaDictionary = require("../../dictionary/database/schema/CriteriaSchemaDictionary");
 
 class CriteriaModel extends BaseModel {
-    #uid;
+    #_id;
     #name;
     #criteria_type_uid;
 
-    get uid() {
-        return this.#uid;
+    get _id() {
+        return this.#_id;
     }
 
-    set uid(value) {
-        this.#uid = value;
+    set _id(value) {
+        this.#_id = value;
     }
 
     get name() {
@@ -33,8 +33,8 @@ class CriteriaModel extends BaseModel {
     toJSON() {
         const json = {};
 
-        if (this.uid !== undefined) {
-            json[CriteriaSchemaDictionary.UID] = this.uid;
+        if (this._id !== undefined) {
+            json[CriteriaSchemaDictionary.UID] = this._id;
         }
 
         if (this.name !== undefined) {

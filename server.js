@@ -5,9 +5,10 @@
 const StringGenerator = require("./src/helper/generator/StringGenerator");
 // Router
 const ClientRouter = require("./src/router/ClientRouter");
-const DatabaseInitializerRouter = require("./src/router/database/DatabaseInitializerRouter");
 // Monogodb Config
 const DatabaseConfig = require("./src/middleware/config/DatabaseConfig");
+// Dependency Middleware
+const DependencyMiddleware = require("./src/middleware/DependencyMiddleware");
 
 // core
 const path = require("path");
@@ -50,11 +51,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, "/web/resources")));
 
 // personal
+// dependencies
+app.use(DependencyMiddleware);
 // router
 // client
 app.use(ClientRouter);
-// database initializer
-app.use(DatabaseInitializerRouter);
 
 
 const PORT = 8080;

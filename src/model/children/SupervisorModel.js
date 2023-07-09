@@ -1,20 +1,20 @@
 const BaseModel = require("../parent/BaseModel");
 const SupervisorSchemaDictionary = require("../../dictionary/database/schema/SupervisorSchemaDictionary");
 
-class SupervisorModel {
-    #uid;
+class SupervisorModel extends BaseModel {
+    #_id;
     #username;
     #password;
     #first_name;
     #last_name;
     #division_uid;
 
-    get uid() {
-        return this.#uid;
+    get _id() {
+        return this.#_id;
     }
 
-    set uid(value) {
-        this.#uid = value;
+    set _id(value) {
+        this.#_id = value;
     }
 
     get username() {
@@ -60,8 +60,8 @@ class SupervisorModel {
     toJSON() {
         const json = {};
 
-        if (this.uid !== undefined) {
-            json[SupervisorSchemaDictionary.UID] = this.uid;
+        if (this._id !== undefined) {
+            json[SupervisorSchemaDictionary.UID] = this._id;
         }
 
         if (this.username !== undefined) {

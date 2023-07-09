@@ -22,6 +22,23 @@ class SupervisorController extends BaseController {
 
         return result;
     }
+
+    // ONLY FOR DB INIT PURPOSE
+    async createOne(model) {
+        let result;
+        if (model instanceof SupervisorModel) {
+            let schema = SupervisorSchema.getNewSchema();
+            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.SUPERVISOR, schema);
+
+            super.myModel = model;
+            super.mongooseModel = mongooseModel;
+            result = await super._createOne();
+        } else {
+            throw new Error(`${__filename}: model must be of type SupervisorModel`);
+        }
+
+        return result;
+    }
 }
 
 module.exports = SupervisorController;

@@ -1,0 +1,43 @@
+.container {
+    min-width: 20vw;
+    min-height: 40vh;
+    max-width: 30VW;
+    max-height: 60.94VH;
+    margin-top: calc((100VH - 60.94VH) / 2);
+    background-color: white;
+    border-radius: 15px;
+}
+
+.box-title {
+    padding-top: 15px;
+    /*border: 1px solid var(--primary-color);*/
+}
+
+.input-container {
+    margin: 30px auto 0;
+}
+
+.input-container * {
+    width: 80%;
+    margin: 0 10%;
+}
+
+.input-container input {
+    margin-top: 10px;
+    border: 0 solid white;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: var(--input-box-background);
+}
+
+.input-container-top {
+    margin-top: 50px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+}
+
+.text-bold {
+    font-weight: bold;
+}

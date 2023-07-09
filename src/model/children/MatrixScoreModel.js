@@ -2,18 +2,18 @@ const BaseModel = require("../parent/BaseModel");
 const MatrixScoreSchemaDictionary = require("../../dictionary/database/schema/MatrixScoreSchemaDictionary");
 
 class MatrixScoreModel {
-    #uid;
+    #_id;
     #year;
     #score;
     #criteria_uid;
     #employee_uid;
 
-    get uid() {
-        return this.#uid;
+    get _id() {
+        return this.#_id;
     }
 
-    set uid(value) {
-        this.#uid = value;
+    set _id(value) {
+        this.#_id = value;
     }
 
     get year() {
@@ -51,8 +51,8 @@ class MatrixScoreModel {
     toJSON() {
         const json = {};
 
-        if (this.uid !== undefined) {
-            json[MatrixScoreSchemaDictionary.UID] = this.uid;
+        if (this._id !== undefined) {
+            json[MatrixScoreSchemaDictionary.UID] = this._id;
         }
 
         if (this.year !== undefined) {

@@ -7,18 +7,18 @@ const {
 } = require("mongoose");
 
 class EmployeeModel extends BaseModel {
-    #uid;
+    #_id;
     #first_name;
     #last_name;
     #datetime_of_employment;
     #division_uid;
 
-    get uid() {
-        return this.#uid;
+    get _id() {
+        return this.#_id;
     }
 
-    set uid(value) {
-        this.#uid = value;
+    set _id(value) {
+        this.#_id = value;
     }
 
     get first_name() {
@@ -56,8 +56,8 @@ class EmployeeModel extends BaseModel {
     toJSON() {
         const json = {};
 
-        if (this.uid !== undefined) {
-            json[EmployeeSchemaDictionary.UID] = this.uid;
+        if (this._id !== undefined) {
+            json[EmployeeSchemaDictionary.UID] = this._id;
         }
 
         if (this.first_name !== undefined) {

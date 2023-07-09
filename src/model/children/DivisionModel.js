@@ -2,15 +2,15 @@ const BaseModel = require("../parent/BaseModel");
 const DivisionSchemaDictionary = require("../../dictionary/database/schema/DivisionSchemaDictionary");
 
 class DivisionModel extends BaseModel {
-    #uid;
+    #_id;
     #name;
 
-    get uid() {
-        return this.#uid;
+    get _id() {
+        return this.#_id;
     }
 
-    set uid(value) {
-        this.#uid = value;
+    set _id(value) {
+        this.#_id = value;
     }
 
     get name() {
@@ -24,8 +24,8 @@ class DivisionModel extends BaseModel {
     toJSON() {
         const json = {};
 
-        if (this.uid !== undefined) {
-            json[DivisionSchemaDictionary.UID] = this.uid;
+        if (this._id !== undefined) {
+            json[DivisionSchemaDictionary.UID] = this._id;
         }
 
         if (this.name !== undefined) {

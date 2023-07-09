@@ -1,6 +1,6 @@
 class SessionVariableDictionary {
     static #ALERT = "my-alert";
-    static #SUPERVISOR_MODEL = "supervisor-model";
+    static #SUPERVISOR_MODEL = "client-model";
 
     static get ALERT() {
         return this.#ALERT;

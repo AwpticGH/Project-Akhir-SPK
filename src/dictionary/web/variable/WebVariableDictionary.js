@@ -1,6 +1,6 @@
 class WebVariableDictionary {
-    static #USERNAME = "supervisor-username";
-    static #PASSWORD = "supervisor-password";
+    static #USERNAME = "client-username";
+    static #PASSWORD = "client-password";
     static #DIVISION_NAME = "division-name";
     static #DIVISION_UID = "division-uid";
 

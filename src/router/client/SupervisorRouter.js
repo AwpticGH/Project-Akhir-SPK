@@ -1,4 +1,4 @@
-const ClientRouterDictionary = require("../../dictionary/web/router/ClientRouterDictionary");
+const ClientRouterDictionary = require("../../dictionary/web/router/RouterDictionary");
 const WebVariableDictionary = require("../../dictionary/web/variable/WebVariableDictionary");
 const SessionVariableDictionary = require("../../dictionary/web/variable/SessionVariableDictionary");
 const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary");

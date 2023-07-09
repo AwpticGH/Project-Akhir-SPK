@@ -70,7 +70,6 @@
 1. employee/create
     - input employees.first_name
     - input employees.last_name
-    - input employees.date_of_birth
     - input submit button
 2. matrix/create
     - label divisions.name

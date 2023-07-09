@@ -21,14 +21,14 @@ if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === undefined
     const liveReload = require("livereload");
     const connectLiveReload = require("connect-livereload");
 
-    const liveReloadServer = liveReload.createServer();
-    liveReloadServer.watch(path.join(__dirname, "/web"));
-    liveReloadServer.server.once("connection", () => {
+    const myServer = liveReload.createServer();
+    myServer.watch(path.join(__dirname, "/web"));
+    myServer.server.once("connection", () => {
         setTimeout(() => {
-            liveReloadServer.refresh("/");
+            myServer.refresh("/");
         }, 100);
     });
-    app.use(connectLiveReload);
+    app.use(connectLiveReload());
 }
 
 // middlewares
@@ -45,7 +45,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, "/web/resources")));
 
 // personal
-app.use(ClientRouter);
+app.use("/", ClientRouter);
 
 const PORT = 8080;
 app.listen(PORT, () => {

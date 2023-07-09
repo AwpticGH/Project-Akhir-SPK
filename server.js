@@ -6,7 +6,7 @@ const StringGenerator = require("./src/helper/generator/StringGenerator");
 // Router
 const ClientRouter = require("./src/router/ClientRouter");
 const DatabaseInitializerRouter = require("./src/router/database/DatabaseInitializerRouter");
-//
+// Monogodb Config
 const DatabaseConfig = require("./src/middleware/config/DatabaseConfig");
 
 // core

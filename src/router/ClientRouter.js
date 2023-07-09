@@ -6,7 +6,7 @@ const SupervisorRouter = require("../router/client/SupervisorRouter");
 const RouterDictionary = require("../dictionary/web/router/ClientRouterDictionary");
 
 // third-party
-const express = require("express");
+const express = require("express")
 const router = express.Router();
 
 router.get(RouterDictionary.HOME, (request, response)  => {

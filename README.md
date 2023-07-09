@@ -102,7 +102,7 @@
     - row number (0)
     - row criterias.id (1)
     - row criterias.name (2)
-5. auth/indexDivisionController.js (landing page)
+5. auth/index.js (landing page)
     - input username
     - input password
     - input submit button

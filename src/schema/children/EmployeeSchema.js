@@ -10,10 +10,6 @@ class EmployeeSchema extends BaseSchema {
         return super.getNewSchema(this.#getJSON());
     }
 
-    static getSchema() {
-        return super.getSchema(this.#getJSON());
-    }
-
     static #getJSON() {
         return {
             [EmployeeSchemaDictionary.UID]: String,

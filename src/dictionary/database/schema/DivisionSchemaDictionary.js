@@ -1,9 +1,9 @@
 class DivisionSchemaDictionary {
-    static #UID = "_id";
+    static #_ID = "_id";
     static #NAME = "name";
 
-    static get UID() {
-        return this.#UID;
+    static get _ID() {
+        return this.#_ID;
     }
 
     static get NAME() {

@@ -34,7 +34,7 @@ class CriteriaModel extends BaseModel {
         const json = {};
 
         if (this._id !== undefined) {
-            json[CriteriaSchemaDictionary.UID] = this._id;
+            json[CriteriaSchemaDictionary._ID] = this._id;
         }
 
         if (this.name !== undefined) {

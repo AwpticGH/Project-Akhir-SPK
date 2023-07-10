@@ -1,13 +1,13 @@
 class SupervisorSchemaDictionary {
-    static #UID = "_id";
+    static #_ID = "_id";
     static #USERNAME = "username";
     static #PASSWORD = "password";
     static #FIRST_NAME = "first_name";
     static #LAST_NAME = "last_name";
     static #DIVISION_UID = "division_uid";
 
-    static get UID() {
-        return this.#UID;
+    static get _ID() {
+        return this.#_ID;
     }
 
     static get USERNAME() {

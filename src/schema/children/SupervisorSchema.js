@@ -7,10 +7,6 @@ class SupervisorSchema extends BaseSchema {
         return super.getNewSchema(this.#getJSON());
     }
 
-    static getSchema() {
-        return super.getSchema(this.#getJSON());
-    }
-
     static #getJSON() {
         return {
             [SupervisorSchemaDictionary.UID]: String,

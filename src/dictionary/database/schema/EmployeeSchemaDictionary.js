@@ -1,12 +1,12 @@
 class EmployeeSchemaDictionary {
-    static #UID = "_id";
+    static #_ID = "_id";
     static #FIRST_NAME = "first_name";
     static #LAST_NAME = "last_name";
     static #DATETIME_OF_EMPLOYMENT = "datetime_of_employment";
     static #DIVISION_UID = "division_uid";
 
-    static get UID() {
-        return this.#UID;
+    static get _ID() {
+        return this.#_ID;
     }
 
     static get FIRST_NAME() {

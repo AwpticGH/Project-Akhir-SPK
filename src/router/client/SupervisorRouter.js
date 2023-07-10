@@ -22,7 +22,7 @@ router.post(RouterDictionary.LOGIN, async (request, response) => {
     model.username = request.body[WebVariableDictionary.USERNAME];
 
     let controller = new SupervisorController();
-    model = await controller.findOne(model);
+    model = await controller.readOne(model);
     if (model === null || model === undefined) {
         request.session[SessionVariableDictionary.ALERT] = AlertDictionary.LOGIN_FAILED
         return response.redirect(RouterDictionary.LOGIN);
@@ -42,7 +42,7 @@ router.get(RouterDictionary.CREATE_SUPERVISOR_1, async (request, response) => {
     model.division_uid = "cdb7cf45de925907ce61a87d323464ab";
 
     let controller = new SupervisorController();
-    model = await controller.findOne(model);
+    model = await controller.readOne(model);
     let responseModel = {};
     if (model === null || model === undefined) {
         model = new SupervisorModel();
@@ -75,7 +75,7 @@ router.get(RouterDictionary.CREATE_SUPERVISOR_2, async (request, response) => {
     model.division_uid = "79f607dd90ae636d32944bffba3a51a9";
 
     let controller = new SupervisorController();
-    model = await controller.findOne(model);
+    model = await controller.readOne(model);
     let responseModel = {};
     if (model === null || model === undefined) {
         model = new SupervisorModel();
@@ -108,7 +108,7 @@ router.get(RouterDictionary.CREATE_SUPERVISOR_3, async (request, response) => {
     model.division_uid = "097e698fd3960c1e6fabfa572a3dd129";
 
     let controller = new SupervisorController();
-    model = await controller.findOne(model);
+    model = await controller.readOne(model);
     let responseModel = {};
     if (model === null || model === undefined) {
         model = new SupervisorModel();

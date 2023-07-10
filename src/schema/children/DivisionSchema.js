@@ -9,10 +9,6 @@ class DivisionSchema extends BaseSchema {
         return super.getNewSchema(this.#getJSON());
     }
 
-    static getSchema() {
-        return super.getSchema(this.#getJSON());
-    }
-
     static #getJSON() {
         return {
             [DivisionSchemaDictionary.UID]: String,

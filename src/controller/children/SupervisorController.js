@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 class SupervisorController extends BaseController {
 
-    async findOne(model) {
+    async readOne(model) {
         let result;
         if (model instanceof SupervisorModel) {
             let schema = SupervisorSchema.getNewSchema();
@@ -15,7 +15,7 @@ class SupervisorController extends BaseController {
 
             super.myModel = model;
             super.mongooseModel = mongooseModel;
-            result = await super._findOne();
+            result = await super._readOne();
             mongoose.deleteModel(DatabaseSCollectionDictionary.SUPERVISOR);
         } else {
             throw new Error(`${__filename}: model must be of type SupervisorModel`);

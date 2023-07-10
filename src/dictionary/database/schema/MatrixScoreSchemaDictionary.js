@@ -1,16 +1,16 @@
 class MatrixScoreSchemaDictionary {
-    static #UID = "_id";
-    static #YEAR = "year";
+    static #_ID = "_id";
+    static #TIMESTAMP = "timestamp";
     static #SCORE = "score";
     static #CRITERIA_UID = "criteria_uid";
     static #EMPLOYEE_UID = "employee_uid";
 
-    static get UID() {
-        return this.#UID;
+    static get _ID() {
+        return this.#_ID;
     }
 
-    static get YEAR() {
-        return this.#YEAR;
+    static get TIMESTAMP() {
+        return this.#TIMESTAMP;
     }
 
     static get SCORE() {

@@ -3,7 +3,7 @@ const MatrixScoreSchemaDictionary = require("../../dictionary/database/schema/Ma
 
 class MatrixScoreModel {
     #_id;
-    #year;
+    #timestamp;
     #score;
     #criteria_uid;
     #employee_uid;
@@ -16,12 +16,12 @@ class MatrixScoreModel {
         this.#_id = value;
     }
 
-    get year() {
-        return this.#year;
+    get timestamp() {
+        return this.#timestamp;
     }
 
-    set year(value) {
-        this.#year = value;
+    set timestamp(value) {
+        this.#timestamp = value;
     }
 
     get score() {
@@ -52,11 +52,11 @@ class MatrixScoreModel {
         const json = {};
 
         if (this._id !== undefined) {
-            json[MatrixScoreSchemaDictionary.UID] = this._id;
+            json[MatrixScoreSchemaDictionary._ID] = this._id;
         }
 
-        if (this.year !== undefined) {
-            json[MatrixScoreSchemaDictionary.YEAR] = this.year;
+        if (this.timestamp !== undefined) {
+            json[MatrixScoreSchemaDictionary.TIMESTAMP] = this.timestamp;
         }
 
         if (this.score !== undefined) {

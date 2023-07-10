@@ -57,7 +57,7 @@ class EmployeeModel extends BaseModel {
         const json = {};
 
         if (this._id !== undefined) {
-            json[EmployeeSchemaDictionary.UID] = this._id;
+            json[EmployeeSchemaDictionary._ID] = this._id;
         }
 
         if (this.first_name !== undefined) {

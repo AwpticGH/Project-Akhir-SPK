@@ -61,7 +61,7 @@ class SupervisorModel extends BaseModel {
         const json = {};
 
         if (this._id !== undefined) {
-            json[SupervisorSchemaDictionary.UID] = this._id;
+            json[SupervisorSchemaDictionary._ID] = this._id;
         }
 
         if (this.username !== undefined) {

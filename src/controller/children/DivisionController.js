@@ -24,7 +24,7 @@ class DivisionController extends BaseController {
         return result;
     }
 
-    async findOne(model) {
+    async readOne(model) {
         let result;
         if (model instanceof DivisionModel) {
             let schema = DivisionSchema.getNewSchema();
@@ -32,7 +32,7 @@ class DivisionController extends BaseController {
 
             super.myModel = model;
             super.mongooseModel = mongooseModel;
-            result = await super._findOne()
+            result = await super._readOne()
             mongoose.deleteModel(DatabaseSCollectionDictionary.DIVISION);
         } else {
             throw new Error(`${__filename}: model must be of type DivisionModel`);

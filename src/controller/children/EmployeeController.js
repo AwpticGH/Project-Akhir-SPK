@@ -24,16 +24,15 @@ class EmployeeController extends BaseController {
         return result;
     }
 
-    async findOne(model) {
+    async readOne(model) {
         let result;
         if (model instanceof EmployeeModel) {
-            console.log(`${__filename}.findOne(model): Jalan`);
             let schema = EmployeeSchema.getNewSchema();
             let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.EMPLOYEE, schema);
 
             super.myModel = model;
             super.mongooseModel = mongooseModel;
-            result = await super._findOne();
+            result = await super._readOne();
             mongoose.deleteModel(DatabaseSCollectionDictionary.EMPLOYEE);
         } else {
             throw new Error(`${__filename}: model must be of type EmployeeModel`);
@@ -42,6 +41,22 @@ class EmployeeController extends BaseController {
         return result;
     }
 
+    async readMany(model) {
+        let result;
+        if (model instanceof EmployeeModel) {
+            let schema = EmployeeSchema.getNewSchema();
+            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.EMPLOYEE, schema);
+
+            super.myModel = model;
+            super.mongooseModel = mongooseModel;
+            result = await super._readMany();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.EMPLOYEE);
+        } else {
+            throw new Error(`${__filename}: model must be of type EmployeeModel`);
+        }
+
+        return result;
+    }
 }
 
 module.exports = EmployeeController;

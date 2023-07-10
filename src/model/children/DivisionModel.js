@@ -25,7 +25,7 @@ class DivisionModel extends BaseModel {
         const json = {};
 
         if (this._id !== undefined) {
-            json[DivisionSchemaDictionary.UID] = this._id;
+            json[DivisionSchemaDictionary._ID] = this._id;
         }
 
         if (this.name !== undefined) {

@@ -16,6 +16,7 @@ class DivisionController extends BaseController {
             super.myModel = model;
             super.mongooseModel = mongooseModel;
             result = await super._createOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.DIVISION);
         } else {
             throw new Error(`${__filename}: model must be of type DivisionModel`);
         }
@@ -31,7 +32,8 @@ class DivisionController extends BaseController {
 
             super.myModel = model;
             super.mongooseModel = mongooseModel;
-            result = await super._findOne();
+            result = await super._findOne()
+            mongoose.deleteModel(DatabaseSCollectionDictionary.DIVISION);
         } else {
             throw new Error(`${__filename}: model must be of type DivisionModel`);
         }

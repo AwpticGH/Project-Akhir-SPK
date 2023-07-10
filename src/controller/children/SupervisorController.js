@@ -16,10 +16,10 @@ class SupervisorController extends BaseController {
             super.myModel = model;
             super.mongooseModel = mongooseModel;
             result = await super._findOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.SUPERVISOR);
         } else {
             throw new Error(`${__filename}: model must be of type SupervisorModel`);
         }
-
         return result;
     }
 
@@ -33,6 +33,7 @@ class SupervisorController extends BaseController {
             super.myModel = model;
             super.mongooseModel = mongooseModel;
             result = await super._createOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.SUPERVISOR);
         } else {
             throw new Error(`${__filename}: model must be of type SupervisorModel`);
         }

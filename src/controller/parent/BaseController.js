@@ -1,4 +1,6 @@
 const BaseModel = require("../../model/parent/BaseModel");
+// Monogodb Config
+const DatabaseConfig = require("../../config/DatabaseConfig");
 const mongoose = require("mongoose");
 const MongooseModel = mongoose.Model;
 
@@ -22,6 +24,9 @@ class BaseController {
 
     async _createOne() {
         let result = false;
+        DatabaseConfig.connect().catch((err) => {
+            console.error(err);
+        });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
             if (this.#myModel instanceof BaseModel && this.#mongooseModel.prototype instanceof MongooseModel) {
                 let document = new this.#mongooseModel(this.#myModel.toJSON());
@@ -50,11 +55,16 @@ class BaseController {
             }
         }
 
+        DatabaseConfig.close();
+
         return result;
     }
 
     async _findOne() {
         let result;
+        DatabaseConfig.connect().catch((err) => {
+            console.error(err);
+        });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
             if (this.#myModel instanceof BaseModel && this.#mongooseModel.prototype instanceof MongooseModel) {
                 let query = this.#mongooseModel.findOne(this.#myModel.toJSON());
@@ -79,6 +89,8 @@ class BaseController {
                 throw new Error(`mongooseModel Variable Has Not Been Initialized`);
             }
         }
+
+        DatabaseConfig.close();
 
         return result;
     }

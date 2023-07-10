@@ -5,10 +5,10 @@
 const StringGenerator = require("./src/helper/generator/StringGenerator");
 // Router
 const ClientRouter = require("./src/router/ClientRouter");
-// Monogodb Config
-const DatabaseConfig = require("./src/middleware/config/DatabaseConfig");
 // Dependency Middleware
 const DependencyMiddleware = require("./src/middleware/DependencyMiddleware");
+// Authentication Middleware
+const AuthenticationMiddleware = require("./src/middleware/AuthenticationMiddleware");
 
 // core
 const path = require("path");
@@ -53,8 +53,8 @@ app.use(express.static(path.join(__dirname, "/web/resources")));
 // personal
 // dependencies
 app.use(DependencyMiddleware);
+app.use(AuthenticationMiddleware);
 // router
-// client
 app.use(ClientRouter);
 
 

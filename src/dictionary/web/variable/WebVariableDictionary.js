@@ -3,6 +3,8 @@ class WebVariableDictionary {
     static #PASSWORD = "client-password";
     static #DIVISION_NAME = "division-name";
     static #DIVISION_UID = "division-uid";
+    static #EMPLOYEE_FIRST_NAME = "employee-first-name";
+    static #EMPLOYEE_LAST_NAME = "employee-last-name";
 
     static get USERNAME() {
         return this.#USERNAME;
@@ -18,6 +20,14 @@ class WebVariableDictionary {
 
     static get DIVISION_UID() {
         return this.#DIVISION_UID;
+    }
+
+    static get EMPLOYEE_FIRST_NAME() {
+        return this.#EMPLOYEE_FIRST_NAME;
+    }
+
+    static get EMPLOYEE_LAST_NAME() {
+        return this.#EMPLOYEE_LAST_NAME;
     }
 }
 

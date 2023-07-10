@@ -6,14 +6,14 @@ const MatrixScoreRouter = require("./client/MatrixScoreRouter");
 const SupervisorRouter = require("./client/SupervisorRouter");
 // dictionary
 const RouterDictionary = require("../dictionary/web/router/RouterDictionary");
+// flag
+const AuthenticationFlag = require("../flag/AuthenticationFlag");
 
 // third-party
 const express = require("express")
 const router = express.Router();
 
 router.get(RouterDictionary.HOME, (request, response)  => {
-    // arahin ke file dashboard
-    console.log("ClientRouter.get(HOME) = " + request.originalUrl);
     return response.render("index", {
         layout: "static/main",
         page_title: "Home"

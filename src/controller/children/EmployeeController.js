@@ -15,7 +15,8 @@ class EmployeeController extends BaseController {
 
             super.myModel = model;
             super.mongooseModel = mongooseModel;
-            result = await super._createOne();
+            result = await super._createOne()
+            mongoose.deleteModel(DatabaseSCollectionDictionary.EMPLOYEE);
         } else {
             throw new Error(`${__filename}: model must be of type EmployeeModel`);
         }
@@ -33,6 +34,7 @@ class EmployeeController extends BaseController {
             super.myModel = model;
             super.mongooseModel = mongooseModel;
             result = await super._findOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.EMPLOYEE);
         } else {
             throw new Error(`${__filename}: model must be of type EmployeeModel`);
         }

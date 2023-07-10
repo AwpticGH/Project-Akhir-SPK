@@ -37,58 +37,100 @@ router.post(RouterDictionary.LOGIN, async (request, response) => {
     }
 })
 
-router.post(RouterDictionary.CREATE_SUPERVISOR_1, async (request, response) => {
+router.get(RouterDictionary.CREATE_SUPERVISOR_1, async (request, response) => {
     let model = new SupervisorModel();
-    model._id = StringGenerator.generateUid();
-    model.username = "rafifajarrr";
-    let password = "refresh";
-    model.password = await StringGenerator.generateHashedPassword(password);
-    model.first_name = "Rafi Fajar";
-    model.last_name = "Sulaiman"
     model.division_uid = "cdb7cf45de925907ce61a87d323464ab";
 
     let controller = new SupervisorController();
-    let created = await controller.createOne(model);
+    model = await controller.findOne(model);
     let responseModel = {};
-    responseModel.message = created;
+    if (model === null || model === undefined) {
+        model = new SupervisorModel();
+        model._id = StringGenerator.generateUid();
+        model.username = "rafifajarrr";
+        let password = "refresh";
+        model.password = await StringGenerator.generateHashedPassword(password);
+        model.first_name = "Rafi Fajar";
+        model.last_name = "Sulaiman"
+        model.division_uid = "cdb7cf45de925907ce61a87d323464ab";
+
+        let created = await controller.createOne(model);
+        responseModel.message = {
+            status: created,
+            operation: "create"
+        };
+    } else {
+        responseModel.message = {
+            status: true,
+            operation: "read"
+        };
+    }
     responseModel.data = model.toJSON();
 
     return response.json(responseModel);
 });
 
-router.post(RouterDictionary.CREATE_SUPERVISOR_2, async (request, response) => {
+router.get(RouterDictionary.CREATE_SUPERVISOR_2, async (request, response) => {
     let model = new SupervisorModel();
-    model._id = StringGenerator.generateUid();
-    model.username = "admin_finance";
-    let password = "finance123";
-    model.password = await StringGenerator.generateHashedPassword(password);
-    model.first_name = "Finance";
-    model.last_name = "Supervisor"
     model.division_uid = "79f607dd90ae636d32944bffba3a51a9";
 
     let controller = new SupervisorController();
-    let created = await controller.createOne(model);
+    model = await controller.findOne(model);
     let responseModel = {};
-    responseModel.message = created;
+    if (model === null || model === undefined) {
+        model = new SupervisorModel();
+        model._id = StringGenerator.generateUid();
+        model.username = "admin_finance";
+        let password = "finance123";
+        model.password = await StringGenerator.generateHashedPassword(password);
+        model.first_name = "Finance";
+        model.last_name = "Supervisor"
+        model.division_uid = "79f607dd90ae636d32944bffba3a51a9";
+
+        let created = await controller.createOne(model);
+        responseModel.message = {
+            status: created,
+            operation: "create"
+        };
+    } else {
+        responseModel.message = {
+            status: true,
+            operation: "read"
+        };
+    }
     responseModel.data = model.toJSON();
 
     return response.json(responseModel);
 })
 
-router.post(RouterDictionary.CREATE_SUPERVISOR_3, async (request, response) => {
+router.get(RouterDictionary.CREATE_SUPERVISOR_3, async (request, response) => {
     let model = new SupervisorModel();
-    model._id = StringGenerator.generateUid();
-    model.username = "admin_human_resource";
-    let password = "hr123";
-    model.password = await StringGenerator.generateHashedPassword(password);
-    model.first_name = "Human Resource";
-    model.last_name = "Supervisor"
     model.division_uid = "097e698fd3960c1e6fabfa572a3dd129";
 
     let controller = new SupervisorController();
-    let created = await controller.createOne(model);
+    model = await controller.findOne(model);
     let responseModel = {};
-    responseModel.message = created;
+    if (model === null || model === undefined) {
+        model = new SupervisorModel();
+        model._id = StringGenerator.generateUid();
+        model.username = "admin_human_resource";
+        let password = "hr123";
+        model.password = await StringGenerator.generateHashedPassword(password);
+        model.first_name = "Human Resource";
+        model.last_name = "Supervisor"
+        model.division_uid = "097e698fd3960c1e6fabfa572a3dd129";
+
+        let created = await controller.createOne(model);
+        responseModel.message = {
+            status: created,
+            operation: "create"
+        };
+    } else {
+        responseModel.message = {
+            status: true,
+            operation: "read"
+        };
+    }
     responseModel.data = model.toJSON();
 
     return response.json(responseModel);

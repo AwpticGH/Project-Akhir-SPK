@@ -1,5 +1,5 @@
 const BaseController = require("../parent/BaseController");
-const CriteriaModel = require("../../model/children/CriteriaModel");
+const CriteriaModel = require("../../model/children/database/CriteriaModel");
 const CriteriaSchema = require("../../schema/children/CriteriaSchema");
 const DatabaseSCollectionDictionary = require("../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
 

@@ -1,6 +1,6 @@
 const BaseController = require("../parent/BaseController");
 const DatabaseSCollectionDictionary = require("../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
-const EmployeeModel = require("../../model/children/EmployeeModel");
+const EmployeeModel = require("../../model/children/database/EmployeeModel");
 const EmployeeSchema = require("../../schema/children/EmployeeSchema");
 
 const mongoose = require("mongoose");

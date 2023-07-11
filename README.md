@@ -10,33 +10,34 @@
 ### Database :
 - Table :
 1. employees
-    - uid
+    - _id
     - first_name
     - last_name
     - datetime_of_employment
     - division_uid
 2. matrix_scores
-    - uid
+    - _id
     - year
     - score
     - criteria_uid
     - employee_uid
 3. criteria
-    - uid
+    - _id
     - name
+    - point
     - criteria_type_uid
 4. criteria_types
-    - uid
+    - _id
     - type
 5. supervisors
-    - uid
+    - _id
     - username
     - password
     - first_name
     - last_name
     - division_uid
 6. divisions
-    - uid
+    - _id
     - name
 
 - Create :

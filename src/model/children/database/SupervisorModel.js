@@ -1,5 +1,5 @@
-const BaseModel = require("../parent/BaseModel");
-const SupervisorSchemaDictionary = require("../../dictionary/database/schema/SupervisorSchemaDictionary");
+const BaseModel = require("../../parent/BaseModel");
+const SupervisorSchemaDictionary = require("../../../dictionary/database/schema/SupervisorSchemaDictionary");
 
 class SupervisorModel extends BaseModel {
     #_id;

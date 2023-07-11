@@ -1,6 +1,6 @@
 const BaseController = require("../parent/BaseController");
 const DatabaseSCollectionDictionary = require("../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
-const DivisionModel = require("../../model/children/DivisionModel");
+const DivisionModel = require("../../model/children/database/DivisionModel");
 const DivisionSchema = require("../../schema/children/DivisionSchema");
 
 const mongoose = require("mongoose");

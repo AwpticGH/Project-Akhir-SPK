@@ -4,9 +4,9 @@ const SessionVariableDictionary = require("../../dictionary/web/variable/Session
 const SupervisorSchemaDictionary = require("../../dictionary/database/schema/SupervisorSchemaDictionary");
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const AuthenticationFlag = require("../../flag/AuthenticationFlag");
-const EmployeeModel = require("../../model/children/EmployeeModel");
+const EmployeeModel = require("../../model/children/database/EmployeeModel");
 const EmployeeController = require("../../controller/children/EmployeeController");
-const DivisionModel = require("../../model/children/DivisionModel");
+const DivisionModel = require("../../model/children/database/DivisionModel");
 const DivisionController = require("../../controller/children/DivisionController");
 
 const express = require("express");

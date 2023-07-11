@@ -1,5 +1,5 @@
 const BaseController = require("../parent/BaseController");
-const MatrixScoreModel = require("../../model/children/MatrixScoreModel");
+const MatrixScoreModel = require("../../model/children/database/MatrixScoreModel");
 const MatrixScoreSchema = require("../../schema/children/MatrixScoreSchema");
 const DatabaseSCollectionDictionary = require("../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
 

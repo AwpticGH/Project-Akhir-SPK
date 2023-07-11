@@ -3,7 +3,7 @@ const WebVariableDictionary = require("../../dictionary/web/variable/WebVariable
 const SessionVariableDictionary = require("../../dictionary/web/variable/SessionVariableDictionary");
 const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary")
 const StringGenerator = require("../../helper/generator/StringGenerator");
-const SupervisorModel = require("../../model/children/SupervisorModel");
+const SupervisorModel = require("../../model/children/database/SupervisorModel");
 const SupervisorController = require("../../controller/children/SupervisorController");
 
 const express = require("express");

@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="text-center box-title">
+        <h3>LOGIN</h3>
+    </div>
+    <form action="<%= RouterDictionary.LOGIN %>" method="post">
+        <div class="input-container input-container-top">
+            <label for="<%= WebVariableDictionary.USERNAME %>">Username</label>
+            <input type="text" id="<%= WebVariableDictionary.USERNAME %>" name="<%= WebVariableDictionary.USERNAME %>"/>
+        </div>
+        <div class="input-container">
+            <label for="<%= WebVariableDictionary.PASSWORD %>">Password</label>
+            <input type="password" id="<%= WebVariableDictionary.PASSWORD %>" name="<%= WebVariableDictionary.PASSWORD %>"/>
+        </div>
+        <div class="input-container">
+            <button type="submit" class="btn btn-primary mt-4 text-bold">LOGIN</button>
+        </div>
+    </form>
+</div>

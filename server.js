@@ -1,12 +1,18 @@
 // dependencies
 /* personal
 * String Generator
-* Router
 * */
 const StringGenerator = require("./src/helper/generator/StringGenerator");
+// Router
 const ClientRouter = require("./src/router/ClientRouter");
+// Dependency Middleware
+const DependencyMiddleware = require("./src/middleware/DependencyMiddleware");
+// Authentication Middleware
+const AuthenticationMiddleware = require("./src/middleware/AuthenticationMiddleware");
+
 // core
 const path = require("path");
+
 // third party
 const express = require("express");
 const session = require("express-session");
@@ -45,12 +51,16 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, "/web/resources")));
 
 // personal
-app.use("/", ClientRouter);
+// dependencies
+app.use(DependencyMiddleware);
+app.use(AuthenticationMiddleware);
+// router
+app.use(ClientRouter);
+
 
 const PORT = 8080;
 app.listen(PORT, () => {
-    console.log(`App Started! Listening On Port ${PORT}`);
-    console.log(`env = ${process.env.NODE_ENV}`);
+    console.log(`App Started! Listening On Port '${PORT}' With Env '${process.env.NODE_ENV}'`);
 });
 
 module.exports = app;

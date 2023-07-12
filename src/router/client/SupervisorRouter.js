@@ -4,9 +4,10 @@ const SessionVariableDictionary = require("../../dictionary/web/variable/Session
 const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary")
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const SupervisorModel = require("../../model/children/database/SupervisorModel");
-const SupervisorController = require("../../controller/children/SupervisorController");
+const SupervisorController = require("../../controller/children/database/SupervisorController");
 
 const express = require("express");
+const AuthenticationFlag = require("../../flag/AuthenticationFlag");
 const router = express.Router();
 
 router.get(RouterDictionary.LOGIN, (request, response) => {
@@ -35,7 +36,12 @@ router.post(RouterDictionary.LOGIN, async (request, response) => {
             return response.redirect(RouterDictionary.LOGIN);
         }
     }
-})
+});
+
+router.get(RouterDictionary.LOGOUT, (request, response, next) => {
+    request.session[SessionVariableDictionary.SUPERVISOR_MODEL] = null;
+    response.redirect(RouterDictionary.LOGIN);
+});
 
 router.get(RouterDictionary.CREATE_SUPERVISOR_1, async (request, response) => {
     let model = new SupervisorModel();

@@ -2,7 +2,7 @@ const SessionVariableDictionary = require("../dictionary/web/variable/SessionVar
 
 class AuthenticationFlag {
     static isAuthenticated(request) {
-        return request.session[SessionVariableDictionary.SUPERVISOR_MODEL] !== undefined;
+        return request.session[SessionVariableDictionary.SUPERVISOR_MODEL] !== undefined && request.session[SessionVariableDictionary.SUPERVISOR_MODEL] !== null;
     }
 }
 

@@ -1,7 +1,7 @@
-const BaseController = require("../parent/BaseController");
-const SupervisorModel = require("../../model/children/database/SupervisorModel");
-const SupervisorSchema = require("../../schema/children/SupervisorSchema");
-const DatabaseSCollectionDictionary = require("../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
+const BaseController = require("../../parent/BaseController");
+const SupervisorModel = require("../../../model/children/database/SupervisorModel");
+const SupervisorSchema = require("../../../schema/children/SupervisorSchema");
+const DatabaseSCollectionDictionary = require("../../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
 
 const mongoose = require("mongoose");
 

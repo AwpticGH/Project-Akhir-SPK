@@ -5,9 +5,9 @@ const SupervisorSchemaDictionary = require("../../dictionary/database/schema/Sup
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const AuthenticationFlag = require("../../flag/AuthenticationFlag");
 const EmployeeModel = require("../../model/children/database/EmployeeModel");
-const EmployeeController = require("../../controller/children/EmployeeController");
+const EmployeeController = require("../../controller/children/database/EmployeeController");
 const DivisionModel = require("../../model/children/database/DivisionModel");
-const DivisionController = require("../../controller/children/DivisionController");
+const DivisionController = require("../../controller/children/database/DivisionController");
 
 const express = require("express");
 const router = express.Router();

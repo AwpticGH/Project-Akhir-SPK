@@ -12,7 +12,7 @@ class EmployeeSchema extends BaseSchema {
 
     static #getJSON() {
         return {
-            [EmployeeSchemaDictionary.UID]: String,
+            [EmployeeSchemaDictionary._ID]: String,
             [EmployeeSchemaDictionary.FIRST_NAME]: String,
             [EmployeeSchemaDictionary.LAST_NAME]: String,
             [EmployeeSchemaDictionary.DATETIME_OF_EMPLOYMENT]: Date,

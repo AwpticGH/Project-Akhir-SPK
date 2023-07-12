@@ -156,7 +156,7 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nama Karyawan</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Nama Lengkap">
+                            placeholder="Nama Lengkap" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput2" class="form-label">Department</label>
@@ -314,6 +314,11 @@
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">ID Karyawan</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="ID Karyawan" readonly>
+                    </div>
+                    <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Nama Karyawan</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Nama Lengkap">
@@ -349,7 +354,21 @@
             <form action="<%= RouterDictionary.EMPLOYEE_DELETE %>" method="post">
                 <input type="hidden" name="<%= WebVariableDictionary.EMPLOYEE_UID %>" id="input-employee-uid" />
                 <div class="modal-body">
-                    <p>Apakah Anda Yakin akan Menghapus Karyawan Ini?</p>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">ID Karyawan</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="ID Karyawan" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nama Karyawan</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Nama Lengkap" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Department</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Department" readonly>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>

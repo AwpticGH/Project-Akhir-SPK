@@ -22,7 +22,8 @@ router.get(RouterDictionary.EMPLOYEE_CREATE, (request, response) => {
 router.get(RouterDictionary.EMPLOYEE_SHOW, async (request, response) => {
     return response.render("karyawan", {
         layout: "static/main",
-        page_title: "Show Employees"
+        page_title: "Show Employees",
+        js_file: ["karyawan/modal-delete"]
     });
 });
 

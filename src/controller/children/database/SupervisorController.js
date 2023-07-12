@@ -23,6 +23,23 @@ class SupervisorController extends BaseController {
         return result;
     }
 
+    async updateOne(model) {
+        let result = false;
+        if (model instanceof SupervisorModel) {
+            let schema = SupervisorSchema.getNewSchema();
+            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.SUPERVISOR, schema);
+
+            super.myModel = model;
+            super.mongooseModel = mongooseModel;
+            result = await super._updateOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.SUPERVISOR);
+        } else {
+            throw new Error(`${__filename}: model must be of type SupervisorModel`);
+        }
+
+        return result;
+    }
+
     // ONLY FOR DB INIT PURPOSE
     async createOne(model) {
         let result;

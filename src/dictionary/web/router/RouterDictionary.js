@@ -1,6 +1,7 @@
 class RouterDictionary {
     static #HOME = "/";
     static #LOGIN = "/login"; // supervisors readOne
+    static #LOGOUT = "/logout";
     static #EMPLOYEE_CREATE = "/employee/create"; // employees createOne
     static #EMPLOYEE_SHOW = "/employee/show"; // employees readMany
     static #EMPLOYEE_UPDATE = "/employee/update"; // employees updateOne
@@ -8,6 +9,7 @@ class RouterDictionary {
     static #CRITERIA_SHOW = "/criteria/show"; // criteria readAll / readMany
     static #MATRIX_SCORE_CREATE = "/matrix/create"; // matrix_score createMany
     static #MATRIX_SCORE_SHOW = "/matrix/show"; // matrix_score readMany
+    static #SUPERVISOR_UPDATE = "/supervisor/update"; // supervisor updateOne
 
     // for initializing database
     static #CREATE_SUPERVISOR_1 = "/supervisor/create/1";
@@ -20,6 +22,10 @@ class RouterDictionary {
 
     static get LOGIN() {
         return this.#LOGIN;
+    }
+
+    static get LOGOUT() {
+        return this.#LOGOUT;
     }
 
     static get EMPLOYEE_CREATE() {
@@ -50,7 +56,11 @@ class RouterDictionary {
         return this.#MATRIX_SCORE_SHOW;
     }
 
-    // for initializing database
+    static get SUPERVISOR_UPDATE() {
+        return this.#SUPERVISOR_UPDATE;
+    }
+
+// for initializing database
     static get CREATE_SUPERVISOR_1() {
         return this.#CREATE_SUPERVISOR_1;
     }

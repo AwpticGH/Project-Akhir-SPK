@@ -1,7 +1,7 @@
-const BaseController = require("../parent/BaseController");
-const SupervisorModel = require("../../model/children/SupervisorModel");
-const SupervisorSchema = require("../../schema/children/SupervisorSchema");
-const DatabaseSCollectionDictionary = require("../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
+const BaseController = require("../../parent/BaseController");
+const SupervisorModel = require("../../../model/children/database/SupervisorModel");
+const SupervisorSchema = require("../../../schema/children/SupervisorSchema");
+const DatabaseSCollectionDictionary = require("../../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
 
 const mongoose = require("mongoose");
 
@@ -20,6 +20,23 @@ class SupervisorController extends BaseController {
         } else {
             throw new Error(`${__filename}: model must be of type SupervisorModel`);
         }
+        return result;
+    }
+
+    async updateOne(model) {
+        let result = false;
+        if (model instanceof SupervisorModel) {
+            let schema = SupervisorSchema.getNewSchema();
+            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.SUPERVISOR, schema);
+
+            super.myModel = model;
+            super.mongooseModel = mongooseModel;
+            result = await super._updateOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.SUPERVISOR);
+        } else {
+            throw new Error(`${__filename}: model must be of type SupervisorModel`);
+        }
+
         return result;
     }
 

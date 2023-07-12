@@ -22,6 +22,7 @@ const middleware = (request, response, next) => {
     response.locals.MatrixScoreSchemaDictionary = MatrixScoreSchemaDictionary;
     response.locals.SupervisorSchemaDictionary = SupervisorSchemaDictionary;
     response.locals.css_file = [];
+    response.locals.js_file = [];
 
     next();
 }

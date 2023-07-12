@@ -11,7 +11,7 @@ class DivisionSchema extends BaseSchema {
 
     static #getJSON() {
         return {
-            [DivisionSchemaDictionary.UID]: String,
+            [DivisionSchemaDictionary._ID]: String,
             [DivisionSchemaDictionary.NAME]: String
         }
     }

@@ -1,5 +1,5 @@
-const BaseModel = require("../parent/BaseModel");
-const MatrixScoreSchemaDictionary = require("../../dictionary/database/schema/MatrixScoreSchemaDictionary");
+const BaseModel = require("../../parent/BaseModel");
+const MatrixScoreSchemaDictionary = require("../../../dictionary/database/schema/MatrixScoreSchemaDictionary");
 
 class MatrixScoreModel {
     #_id;

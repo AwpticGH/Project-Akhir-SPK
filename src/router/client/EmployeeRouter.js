@@ -4,10 +4,10 @@ const SessionVariableDictionary = require("../../dictionary/web/variable/Session
 const SupervisorSchemaDictionary = require("../../dictionary/database/schema/SupervisorSchemaDictionary");
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const AuthenticationFlag = require("../../flag/AuthenticationFlag");
-const EmployeeModel = require("../../model/children/EmployeeModel");
-const EmployeeController = require("../../controller/children/EmployeeController");
-const DivisionModel = require("../../model/children/DivisionModel");
-const DivisionController = require("../../controller/children/DivisionController");
+const EmployeeModel = require("../../model/children/database/EmployeeModel");
+const EmployeeController = require("../../controller/children/database/EmployeeController");
+const DivisionModel = require("../../model/children/database/DivisionModel");
+const DivisionController = require("../../controller/children/database/DivisionController");
 
 const express = require("express");
 const router = express.Router();
@@ -20,20 +20,30 @@ router.get(RouterDictionary.EMPLOYEE_CREATE, (request, response) => {
 });
 
 router.get(RouterDictionary.EMPLOYEE_SHOW, async (request, response) => {
+    let divisionController = new DivisionController();
+    let divisionModel = new DivisionModel();
+    divisionModel._id = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].division_uid;
+    divisionModel = await divisionController.readOne(divisionModel);
+
+    let employeeController = new EmployeeController();
+    let employeeModel = new EmployeeModel();
+    employeeModel.division_uid = divisionModel._id;
+    let employees = await employeeController.readMany(employeeModel);
+
     return response.render("karyawan", {
         layout: "static/main",
-        page_title: "Show Employees"
-    });
-});
-
-router.get(RouterDictionary.CRITERIA_SHOW, async (request, response) => {
-    return response.render("criteria", {
-        layout: "static/main",
-        page_title: "Show Criteria"
+        page_title: "Show Employees",
+        js_file: ["karyawan/modal-delete"],
+        employees: employees,
+        division: divisionModel
     });
 });
 
 router.post(RouterDictionary.EMPLOYEE_CREATE, async (request, response) => {
+    /* TODO:
+    *   Confirm employee creation logic
+    * */
+
     let model = new EmployeeModel();
     model._id = StringGenerator.generateUid();
     model.first_name = request.body[WebVariableDictionary.EMPLOYEE_FIRST_NAME];

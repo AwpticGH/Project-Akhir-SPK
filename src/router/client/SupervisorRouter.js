@@ -3,10 +3,11 @@ const WebVariableDictionary = require("../../dictionary/web/variable/WebVariable
 const SessionVariableDictionary = require("../../dictionary/web/variable/SessionVariableDictionary");
 const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary")
 const StringGenerator = require("../../helper/generator/StringGenerator");
-const SupervisorModel = require("../../model/children/SupervisorModel");
-const SupervisorController = require("../../controller/children/SupervisorController");
+const SupervisorModel = require("../../model/children/database/SupervisorModel");
+const SupervisorController = require("../../controller/children/database/SupervisorController");
 
 const express = require("express");
+const AuthenticationFlag = require("../../flag/AuthenticationFlag");
 const router = express.Router();
 
 router.get(RouterDictionary.LOGIN, (request, response) => {
@@ -35,7 +36,45 @@ router.post(RouterDictionary.LOGIN, async (request, response) => {
             return response.redirect(RouterDictionary.LOGIN);
         }
     }
-})
+});
+
+router.get(RouterDictionary.LOGOUT, (request, response, next) => {
+    request.session[SessionVariableDictionary.SUPERVISOR_MODEL] = null;
+    response.redirect(RouterDictionary.LOGIN);
+});
+
+router.post(RouterDictionary.SUPERVISOR_UPDATE, async (request, response) => {
+    let originUrl = request.body[WebVariableDictionary.CURRENT_URL];
+    let password = request.body[WebVariableDictionary.PASSWORD];
+    let passwordConfirmation = request.body[WebVariableDictionary.PASSWORD_CONFIRMATION];
+
+    if (password === passwordConfirmation) {
+        let model = new SupervisorModel();
+        model._id = request.session[SessionVariableDictionary.SUPERVISOR_MODEL]._id;
+        model.username = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].username;
+        model.password = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].password;
+        model.first_name = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].first_name;
+        model.last_name = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].last_name;
+        model.division_uid = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].division_uid;
+
+        let hashedPassword = await StringGenerator.generateHashedPassword(password);
+
+        if (hashedPassword !== model.password) {
+            model.password = hashedPassword;
+
+            let controller = new SupervisorController();
+            let updated = await controller.updateOne(model);
+            request.session[SessionVariableDictionary.ALERT] = updated ? AlertDictionary.UPDATE_SUCCESS : AlertDictionary.UPDATE_FAILED;
+            request.session[SessionVariableDictionary.SUPERVISOR_MODEL] = model;
+        } else {
+            request.session[SessionVariableDictionary.ALERT] = AlertDictionary.PASSWORD_EQUAL;
+        }
+    } else {
+        request.session[SessionVariableDictionary.ALERT] = AlertDictionary.PASSWORD_CONFIRMATION_FAILED;
+    }
+
+    response.redirect(originUrl);
+});
 
 router.get(RouterDictionary.CREATE_SUPERVISOR_1, async (request, response) => {
     let model = new SupervisorModel();

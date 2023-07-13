@@ -19,6 +19,14 @@ router.get(RouterDictionary.HOME, (request, response, next) => {
     middleware(request, response, next);
 });
 
+router.get(RouterDictionary.LOGOUT, (request, response, next) => {
+    middleware(request, response, next);
+});
+
+router.post(RouterDictionary.SUPERVISOR_UPDATE, (request, response, next) => {
+    middleware(request, response, next);
+});
+
 router.get(RouterDictionary.EMPLOYEE_CREATE, (request, response, next) => {
     middleware(request, response, next);
 });

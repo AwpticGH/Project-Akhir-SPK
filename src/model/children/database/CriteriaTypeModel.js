@@ -1,5 +1,5 @@
-const BaseModel = require("../parent/BaseModel");
-const CriteriaTypeSchemaDictionary = require("../../dictionary/database/schema/CriteriaTypeSchemaDictionary");
+const BaseModel = require("../../parent/BaseModel");
+const CriteriaTypeSchemaDictionary = require("../../../dictionary/database/schema/CriteriaTypeSchemaDictionary");
 
 class CriteriaTypeModel extends BaseModel {
     #_id;

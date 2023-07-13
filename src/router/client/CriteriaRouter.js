@@ -5,7 +5,11 @@ const express = require("express");
 const router = express.Router();
 
 router.get(RouterDictionary.CRITERIA_SHOW, async (request, response) => {
-        return response.render("criteria", {
+    /* TODO:
+    *   Write criteria-read logic
+    * */
+
+    return response.render("criteria", {
         layout: "static/main",
         page_title: "Show Criteria"
     });

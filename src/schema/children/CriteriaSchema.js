@@ -11,6 +11,7 @@ class CriteriaSchema extends BaseSchema {
         return {
             [CriteriaSchemaDictionary._ID]: String,
             [CriteriaSchemaDictionary.NAME]: String,
+            [CriteriaSchemaDictionary.POINT]: Number,
             [CriteriaSchemaDictionary.CRITERIA_TYPE_UID]: String
         }
     }

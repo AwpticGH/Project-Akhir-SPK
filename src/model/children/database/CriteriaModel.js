@@ -1,9 +1,10 @@
-const BaseModel = require("../parent/BaseModel");
-const CriteriaSchemaDictionary = require("../../dictionary/database/schema/CriteriaSchemaDictionary");
+const BaseModel = require("../../parent/BaseModel");
+const CriteriaSchemaDictionary = require("../../../dictionary/database/schema/CriteriaSchemaDictionary");
 
 class CriteriaModel extends BaseModel {
     #_id;
     #name;
+    #point;
     #criteria_type_uid;
 
     get _id() {
@@ -20,6 +21,14 @@ class CriteriaModel extends BaseModel {
 
     set name(value) {
         this.#name = value;
+    }
+
+    get point() {
+        return this.#point;
+    }
+
+    set point(value) {
+        this.#point = value;
     }
 
     get criteria_type_uid() {
@@ -39,6 +48,10 @@ class CriteriaModel extends BaseModel {
 
         if (this.name !== undefined) {
             json[CriteriaSchemaDictionary.NAME] = this.name;
+        }
+
+        if (this.point !== undefined) {
+            json[CriteriaSchemaDictionary.POINT] = this.point;
         }
 
         if (this.criteria_type_uid !== undefined) {

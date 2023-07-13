@@ -9,7 +9,7 @@ class SupervisorSchema extends BaseSchema {
 
     static #getJSON() {
         return {
-            [SupervisorSchemaDictionary.UID]: String,
+            [SupervisorSchemaDictionary._ID]: String,
             [SupervisorSchemaDictionary.USERNAME]: String,
             [SupervisorSchemaDictionary.PASSWORD]: String,
             [SupervisorSchemaDictionary.FIRST_NAME]: String,

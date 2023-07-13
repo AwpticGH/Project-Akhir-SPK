@@ -1,5 +1,5 @@
-const BaseModel = require("../parent/BaseModel");
-const DivisionSchemaDictionary = require("../../dictionary/database/schema/DivisionSchemaDictionary");
+const BaseModel = require("../../parent/BaseModel");
+const DivisionSchemaDictionary = require("../../../dictionary/database/schema/DivisionSchemaDictionary");
 
 class DivisionModel extends BaseModel {
     #_id;

@@ -1,6 +1,7 @@
 class CriteriaSchemaDictionary {
     static #_ID = "_id";
     static #NAME = "name";
+    static #POINT = "point";
     static #CRITERIA_TYPE_UID = "criteria_type_uid";
 
     static get _ID() {
@@ -9,6 +10,10 @@ class CriteriaSchemaDictionary {
 
     static get NAME() {
         return this.#NAME;
+    }
+
+    static get POINT() {
+        return this.#POINT;
     }
 
     static get CRITERIA_TYPE_UID() {

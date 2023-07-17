@@ -1,10 +1,5 @@
 const BaseModel = require("../../parent/BaseModel");
 const EmployeeSchemaDictionary = require("../../../dictionary/database/schema/EmployeeSchemaDictionary");
-const DatabaseSCollection = require("../../../dictionary/database/collection/singular/DatabaseSCollectionDictionary");
-const {
-    Schema,
-    model
-} = require("mongoose");
 
 class EmployeeModel extends BaseModel {
     #_id;

@@ -3,7 +3,6 @@ const WebVariableDictionary = require("../../dictionary/web/variable/WebVariable
 const SessionVariableDictionary = require("../../dictionary/web/variable/SessionVariableDictionary");
 const SupervisorSchemaDictionary = require("../../dictionary/database/schema/SupervisorSchemaDictionary");
 const StringGenerator = require("../../helper/generator/StringGenerator");
-const AuthenticationFlag = require("../../flag/AuthenticationFlag");
 const EmployeeModel = require("../../model/children/database/EmployeeModel");
 const EmployeeController = require("../../controller/children/database/EmployeeController");
 const DivisionModel = require("../../model/children/database/DivisionModel");
@@ -49,12 +48,14 @@ router.post(RouterDictionary.EMPLOYEE_CREATE, async (request, response) => {
     model.first_name = request.body[WebVariableDictionary.EMPLOYEE_FIRST_NAME];
     model.last_name = request.body[WebVariableDictionary.EMPLOYEE_LAST_NAME];
     model.datetime_of_employment = new Date();
-    model.division_uid = request.session[SessionVariableDictionary][SupervisorSchemaDictionary.DIVISION_UID];
+    model.division_uid = request.session[SessionVariableDictionary.SUPERVISOR_MODEL][SupervisorSchemaDictionary.DIVISION_UID];
     console.log(`${__filename}: model = ${JSON.stringify(model.toJSON())}`);
 
     let controller = new EmployeeController();
     let result = await controller.createOne(model);
     console.log(`${__filename}: result = ${result}`);
+
+    response.redirect(RouterDictionary.EMPLOYEE_SHOW);
 });
 
 module.exports = router;

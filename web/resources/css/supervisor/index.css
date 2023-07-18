@@ -1,14 +1,23 @@
 body {
-    background-color: #2D4356;
+    background-color: #f5f5f5;
+    margin: auto;
+}
+
+html {
+    min-height: 100%;
+    /* fill the screen height to allow vertical alignement */
+    display: grid;
+    /* display:flex works too since body is the only grid cell */
 }
 
 .custom-btn-login {
-background-color: #2D4356;
-color: white;
-width: 10rem;
+    background-color: #2D4356;
+    color: white;
+    width: 10rem;
 }
+
 .custom-btn-login:hover {
     background-color: #2D4356;
     color: white;
     width: 10rem;
-    }
+}

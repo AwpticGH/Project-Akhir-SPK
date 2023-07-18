@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 class CriteriaTypeController extends BaseController {
 
-    async findOne(model) {
+    async readOne(model) {
         let result;
         if (model instanceof CriteriaTypeModel) {
             let schema = CriteriaTypeSchema.getNewSchema();
@@ -24,19 +24,12 @@ class CriteriaTypeController extends BaseController {
         return result;
     }
 
-    async createOne(model) {
-        let result = false;
-        if (model instanceof CriteriaTypeModel) {
-            let schema = CriteriaTypeSchema.getNewSchema();
-            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.CRITERIA_TYPE, schema);
+    async readAll() {
+        let schema = CriteriaTypeSchema.getNewSchema();
+        super.mongooseModel = mongoose.model(DatabaseSCollectionDictionary.CRITERIA_TYPE, schema);
 
-            super.myModel = model;
-            super.mongooseModel = mongooseModel;
-            result = await super._createOne();
-            mongoose.deleteModel(DatabaseSCollectionDictionary.CRITERIA_TYPE);
-        } else {
-            throw new Error(`${__filename}: model must be of type CriteriaTypeModel`);
-        }
+        let result = await super._readAll();
+        mongoose.deleteModel(DatabaseSCollectionDictionary.CRITERIA_TYPE);
 
         return result;
     }

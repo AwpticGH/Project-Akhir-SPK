@@ -1,7 +1,7 @@
 const BaseModel = require("../../parent/BaseModel");
 const MatrixScoreSchemaDictionary = require("../../../dictionary/database/schema/MatrixScoreSchemaDictionary");
 
-class MatrixScoreModel {
+class MatrixScoreModel extends BaseModel {
     #_id;
     #timestamp;
     #score;

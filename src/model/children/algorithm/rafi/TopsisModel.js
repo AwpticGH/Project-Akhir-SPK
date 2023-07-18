@@ -5,8 +5,10 @@ class TopsisModel extends BaseModel {
     _first_name;
     _last_name;
     _scores = [];
-    _ternormalisasi = {};
-    _terbobot = {};
+    _ternormalisasi = [];
+    _terbobot = [];
+    _nilaiDPlus;
+    _nilaiDMinus;
     _hasil;
     _rank;
 
@@ -48,6 +50,22 @@ class TopsisModel extends BaseModel {
 
     set terbobot(value) {
         this._terbobot = value;
+    }
+
+    get nilaiDPlus() {
+        return this._nilaiDPlus;
+    }
+
+    set nilaiDPlus(value) {
+        this._nilaiDPlus = value;
+    }
+
+    get nilaiDMinus() {
+        return this._nilaiDMinus;
+    }
+
+    set nilaiDMinus(value) {
+        this._nilaiDMinus = value;
     }
 
     get hasil() {

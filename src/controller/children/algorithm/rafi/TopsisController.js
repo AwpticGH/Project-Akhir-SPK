@@ -12,6 +12,8 @@ const EmployeeController = require("../../database/EmployeeController");
 const MatrixScoreModel = require("../../../../model/children/database/MatrixScoreModel");
 const MatrixScoreController = require("../../database/MatrixScoreController");
 const TopsisModel = require("../../../../model/children/algorithm/rafi/TopsisModel");
+const TopsisAlgorithm = require("../../../../helper/algorithm/rafi/TopsisAlgorithm");
+const SortingAlgorithm = require("../../../../helper/algorithm/sorting/SortingAlgorithm");
 
 class TopsisController extends BaseController {
 
@@ -48,60 +50,97 @@ class TopsisController extends BaseController {
         length = matrixScoreModels.length;
         let employeeLength = employeeModels.length;
         let criteriaLength = criterias.length;
+        let index = 0;
 
-        // for (let i = 0; i < length / criteriaLength; i++) {
-        //     for (let j = 0; j < criteriaLength; j++) {
-        //         let index = (i * criteriaLength) + j;
-        //         if (matrixScoreModels[index] !== undefined && matrixScoreModels[index].length !== 0) {
-        //             console.log(matrixScoreModels[index][0].employee_uid);
-        //         }
-        //     }
-        // }
+        for (let i = 0; i < length; i++) {
+            if (matrixScoreModels[i] !== undefined && matrixScoreModels[i].length !== 0) {
+                let topsisModel = new TopsisModel();
 
-        for (let i = 0; i < length / criteriaLength; i++) {
-            console.log(`iterasi i ke-${i}`);
-            let topsisModel = new TopsisModel();
-            console.log("model = " + topsisModel.toJSON());
-
-            for (let j = 0; j < criteriaLength; j++) {
-                console.log(`iterasi j ke-${j}`);
-                let index = (i * criteriaLength) + j;
-                if (matrixScoreModels[index] !== undefined && matrixScoreModels[index].length !== 0) {
-                    // set name
-                    if (topsisModel) {
-                        for (let k = 0; k < employeeLength; k++) {
-                            // console.log(matrixScoreModels[i]);
-                            // console.log(`i = ${i}`);
-                            // console.log(`j = ${j}`);
-                            // console.log(`k = ${k}`);
-                            // console.log(`index = ${index}`);
-                            // console.log(`pre-topsisModel.first_name = ${topsisModel.first_name}`);
-                            if (employeeModels[k]._id === matrixScoreModels[index][0].employee_uid) {
-                                // set name
-                                topsisModel.first_name = employeeModels[k].first_name;
-                                topsisModel.last_name = employeeModels[k].last_name;
-                                console.log(`post-topsisModel.first_name = ${topsisModel.first_name}`);
-                                console.log(`post-topsisModel.last_name = ${topsisModel.last_name}\n`);
-                                break;
-                            }
-                        }
+                // set name
+                for (let k = 0; k < employeeLength; k++) {
+                    if (employeeModels[k]._id === matrixScoreModels[i][0].employee_uid) {
+                        // set name
+                        topsisModel.first_name = employeeModels[k].first_name;
+                        topsisModel.last_name = employeeModels[k].last_name;
+                        break;
                     }
+                }
+
+                for (let j = 0; j < criteriaLength; j++) {
+                    let index = (i * criteriaLength) + j;
 
                     // set scores
+                    // console.log(matrixScoreModels[i][j]);
                     topsisModel.scores[j] = {};
                     topsisModel.scores[j].criteria = criterias[j].name;
-                    topsisModel.scores[j].score = matrixScoreModels[index].score;
+                    topsisModel.scores[j].score = Number.parseInt(matrixScoreModels[i][j].score);
+                    if (matrixScoreModels[index] !== undefined && matrixScoreModels[index].length !== 0) {
+                    }
                 }
-            }
 
-            result.push(topsisModel);
+                result.push(topsisModel);
+            }
         }
 
         length = result.length;
+        // row by column
+        let listPembagi = [];
+        for (let i = 0; i < criteriaLength; i++) {
+            let temp = [];
+            for (let j = 0; j < length; j++) {
+                if (temp[i] === undefined) {
+                    temp[i] = [];
+                }
+                temp[i][j] = result[j].scores[i].score;
+            }
+            listPembagi[i] = TopsisAlgorithm.pembagi(temp[i]);
+        }
+
+        // ternormalisasi
+        // row by column
+        for (let i = 0; i < criteriaLength; i++) {
+            for (let j = 0; j < length; j++) {
+                result[j].ternormalisasi[i] = TopsisAlgorithm.normalisasi(result[j].scores[i].score, listPembagi[i]);
+            }
+        }
+
+        // terbobot
+        // row by column
+        for (let i = 0; i < criteriaLength; i++) {
+            for (let j = 0; j < length; j++) {
+                result[j].terbobot[i] = TopsisAlgorithm.bobot(result[j].ternormalisasi[i], criterias[i].point);
+            }
+        }
+
+        // row by column
+        let listAPlus = [];
+        let listAMinus = [];
+        for (let i = 0; i < criteriaLength; i++) {
+            let temp = [];
+            for (let j = 0; j < length; j++) {
+                if (temp[i] === undefined) {
+                    temp[i] = [];
+                }
+                temp[i][j] = result[j].terbobot[i];
+            }
+            listAPlus[i] = TopsisAlgorithm.hitungAPlus(temp[i], criteriaTypes[0].type);
+            listAMinus[i] = TopsisAlgorithm.hitungAMinus(temp[i], criteriaTypes[0].type);
+        }
+
+        // column by row
+        for (let i = 0; i < length; i++) {
+            result[i].nilaiDPlus = TopsisAlgorithm.hitungNilaiD(listAPlus, result[i].terbobot);
+            result[i].nilaiDMinus = TopsisAlgorithm.hitungNilaiD(listAMinus, result[i].terbobot);
+            result[i].hasil = TopsisAlgorithm.hitungHasil(result[i].nilaiDPlus, result[i].nilaiDMinus);
+        }
+
+        result = SortingAlgorithm.bubbleSort(result);
 
         result.forEach((x) => {
             console.log(x.toJSON());
+            console.log("\n");
         });
+
         return result;
     }
 }

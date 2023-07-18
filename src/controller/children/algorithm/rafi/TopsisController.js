@@ -90,7 +90,7 @@ class TopsisController extends BaseController {
                     // set scores
                     topsisModel.scores[j] = {};
                     topsisModel.scores[j].criteria = criterias[j].name;
-                    topsisModel.scores[j].score = matrixScoreModels[index][j].score;
+                    topsisModel.scores[j].score = Number.parseInt(matrixScoreModels[index][j].score);
                 }
             }
 

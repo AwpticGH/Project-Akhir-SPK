@@ -49,7 +49,7 @@ class TopsisController extends BaseController {
         let employeeLength = employeeModels.length;
         let criteriaLength = criterias.length;
 
-        // for (let i = 0; i < length / criteriaLength; i++) {
+        // for (let i = 0; i < length; i++) {
         //     for (let j = 0; j < criteriaLength; j++) {
         //         let index = (i * criteriaLength) + j;
         //         if (matrixScoreModels[index] !== undefined && matrixScoreModels[index].length !== 0) {
@@ -58,7 +58,7 @@ class TopsisController extends BaseController {
         //     }
         // }
 
-        for (let i = 0; i < length / criteriaLength; i++) {
+        for (let i = 0; i < length; i++) {
             console.log(`iterasi i ke-${i}`);
             let topsisModel = new TopsisModel();
             console.log("model = " + topsisModel.toJSON());
@@ -68,7 +68,7 @@ class TopsisController extends BaseController {
                 let index = (i * criteriaLength) + j;
                 if (matrixScoreModels[index] !== undefined && matrixScoreModels[index].length !== 0) {
                     // set name
-                    if (topsisModel) {
+                    if (topsisModel.firstName !== undefined) {
                         for (let k = 0; k < employeeLength; k++) {
                             // console.log(matrixScoreModels[i]);
                             // console.log(`i = ${i}`);

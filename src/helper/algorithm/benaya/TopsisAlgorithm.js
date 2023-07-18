@@ -1,130 +1,128 @@
-const readline = require('readline');
+class TopsisAlgorithm {
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+  //pembagi
+  static calculatePembagi(data) {
+    const keys = Object.keys(data[0]);
+    const pembagi = {};
 
-//bobot
-let dataKaryawan = [];
-const bobot = {
-  kedisiplinan: 0.2,
-  hasilKerja: 0.25,
-  pengetahuan: 0.2,
-  sikap: 0.2,
-  kerjaSama: 0.2,
-};
-
-//pembagi
-function calculatePembagi(data) {
-  const keys = Object.keys(data[0]);
-  const pembagi = {};
-
-  for (const key of keys) {
-    if (key !== 'nama') {
-      const squaredSum = data.reduce((sum, karyawan) => sum + (karyawan[key] ** 2), 0);
-      pembagi[key] = Math.sqrt(squaredSum);
+    for (let key of keys) {
+      if (key !== 'nama') {
+        const squaredSum = data.reduce((sum, karyawan) => sum + (karyawan[key] ** 2), 0);
+        pembagi[key] = Math.sqrt(squaredSum);
+      }
     }
-  }
 
-  return pembagi;
-}
+    return pembagi;
+  }
 
 //matriks keputusan
-function normalisasiMatriksKeputusan(data, pembagi) {
-  const keys = Object.keys(data[0]);
-  const matriks = [];
+  static normalisasiMatriksKeputusan(data, pembagi) {
+    const keys = Object.keys(data[0]);
+    const matriks = [];
 
-  for (const karyawan of data) {
-    const hasil = {};
-    for (const key of keys) {
-      if (key !== 'nama') {
-        hasil[key] = karyawan[key] / pembagi[key];
+    for (let karyawan of data) {
+      const hasil = {};
+      for (const key of keys) {
+        if (key !== 'nama') {
+          hasil[key] = karyawan[key] / pembagi[key];
+        }
       }
+      matriks.push(hasil);
     }
-    matriks.push(hasil);
-  }
 
-  return matriks;
-}
+    return matriks;
+  }
 
 //matriks ternormalisasi terbobot
-function hitungMatriksTernormalisasiTerbobot(ternormalisasi, bobot) {
-  const keys = Object.keys(ternormalisasi[0]);
-  const matriks = [];
+  static hitungMatriksTernormalisasiTerbobot(ternormalisasi, bobot) {
+    const keys = Object.keys(ternormalisasi[0]);
+    const matriks = [];
 
-  for (const karyawan of ternormalisasi) {
-    const hasil = {};
-    for (const key of keys) {
-      if (key !== 'nama') {
-        hasil[key] = karyawan[key] * bobot[key];
+    for (let karyawan of ternormalisasi) {
+      const hasil = {};
+      for (const key of keys) {
+        if (key !== 'nama') {
+          hasil[key] = karyawan[key] * bobot[key];
+        }
       }
+      matriks.push(hasil);
     }
-    matriks.push(hasil);
-  }
 
-  return matriks;
-}
+    return matriks;
+  }
 
 //A+ A-
-function cariSolusiIdeal(matriksTernormalisasiTerbobot) {
-  const keys = Object.keys(matriksTernormalisasiTerbobot[0]);
-  const aPlus = {};
-  const aMinus = {};
+  static cariSolusiIdeal(matriksTernormalisasiTerbobot) {
+    const keys = Object.keys(matriksTernormalisasiTerbobot[0]);
+    const aPlus = {};
+    const aMinus = {};
 
-  for (const key of keys) {
-    const max = Math.max(...matriksTernormalisasiTerbobot.map((row) => row[key]));
-    const min = Math.min(...matriksTernormalisasiTerbobot.map((row) => row[key]));
+    for (let key of keys) {
+      const max = Math.max(...matriksTernormalisasiTerbobot.map((row) => row[key]));
+      const min = Math.min(...matriksTernormalisasiTerbobot.map((row) => row[key]));
 
-    aPlus[key] = max;
-    aMinus[key] = min;
+      aPlus[key] = max;
+      aMinus[key] = min;
+    }
+
+    return { aPlus, aMinus };
   }
-
-  return { aPlus, aMinus };
-}
 
 //D+ D- Euclidan
-function hitungJarakEuclidean(ternormalisasiTerbobot, aPlus, aMinus) {
-  const keys = Object.keys(ternormalisasiTerbobot[0]);
-  const dPlus = [];
-  const dMinus = [];
+  static hitungJarakEuclidean(ternormalisasiTerbobot, aPlus, aMinus) {
+    const keys = Object.keys(ternormalisasiTerbobot[0]);
+    const dPlus = [];
+    const dMinus = [];
 
-  for (const karyawan of ternormalisasiTerbobot) {
-    let sumDPlus = 0;
-    let sumDMinus = 0;
-    for (const key of keys) {
-      sumDPlus += (karyawan[key] - aPlus[key]) ** 2;
-      sumDMinus += (karyawan[key] - aMinus[key]) ** 2;
+    for (let karyawan of ternormalisasiTerbobot) {
+      let sumDPlus = 0;
+      let sumDMinus = 0;
+      for (const key of keys) {
+        sumDPlus += (karyawan[key] - aPlus[key]) ** 2;
+        sumDMinus += (karyawan[key] - aMinus[key]) ** 2;
+      }
+      dPlus.push(Math.sqrt(sumDPlus));
+      dMinus.push(Math.sqrt(sumDMinus));
     }
-    dPlus.push(Math.sqrt(sumDPlus));
-    dMinus.push(Math.sqrt(sumDMinus));
-  }
 
-  return { dPlus, dMinus };
-}
+    return { dPlus, dMinus };
+  }
 
 //preferensi(v)
-function hitungNilaiPreferensi(dPlus, dMinus) {
-  const nilaiPreferensi = [];
-  for (let i = 0; i < dPlus.length; i++) {
-    const value = dMinus[i] / (dPlus[i] + dMinus[i]);
-    nilaiPreferensi.push(value);
+  static hitungNilaiPreferensi(dPlus, dMinus) {
+    const nilaiPreferensi = [];
+    for (let i = 0; i < dPlus.length; i++) {
+      const value = dMinus[i] / (dPlus[i] + dMinus[i]);
+      nilaiPreferensi.push(value);
+    }
+    return nilaiPreferensi;
   }
-  return nilaiPreferensi;
-}
 
 //rangking
-function perangkingan(dataKaryawan, nilaiPreferensi) {
-  const perangkingan = dataKaryawan.map((karyawan, index) => ({
-    nama: karyawan.nama,
-    nilaiPreferensi: nilaiPreferensi[index],
-  }));
+  static perangkingan(dataKaryawan, nilaiPreferensi) {
+    const perangkingan = dataKaryawan.map((karyawan, index) => ({
+      nama: karyawan.nama,
+      nilaiPreferensi: nilaiPreferensi[index],
+    }));
 
-  
-  perangkingan.sort((a, b) => b.nilaiPreferensi - a.nilaiPreferensi);
 
-  return perangkingan;
+    perangkingan.sort((a, b) => b.nilaiPreferensi - a.nilaiPreferensi);
+
+    return perangkingan;
+  }
 }
+
+module.exports = TopsisAlgorithm;
+
+//bobot
+const bobot = {
+  kedisiplinan: 0.2,
+  hasil_kerja: 0.25,
+  pengetahuan: 0.2,
+  sikap: 0.2,
+  kerja_sama: 0.2,
+};
+
 
 //function (console)
 function tambahDataKaryawan() {

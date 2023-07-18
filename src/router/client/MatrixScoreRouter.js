@@ -5,18 +5,20 @@ const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary");
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const MatrixScoreModel = require("../../model/children/database/MatrixScoreModel");
 const MatrixScoreController = require("../../controller/children/database/MatrixScoreController");
+const TopsisModel = require("../../model/children/algorithm/benaya/TopsisModel");
+const TopsisController = require("../../controller/children/algorithm/rafi/TopsisController");
 
 const express = require("express");
 const router = express.Router();
 
 router.get(RouterDictionary.MATRIX_SCORE_SHOW, async (request, response) => {
-    /* TODO:
-    *   Write matrix-score read logic
-    * */
+    let controller = new TopsisController();
+    let topsisModels = await controller.readAll(request);
 
     return response.render("perhitungan", {
         layout: "static/main",
-        page_title: "Perhitungan"
+        page_title: "Perhitungan",
+        topsis_models: topsisModels
     });
 });
 

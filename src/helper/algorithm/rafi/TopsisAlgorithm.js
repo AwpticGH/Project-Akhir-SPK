@@ -13,9 +13,7 @@ class TopsisAlgorithm {
         let length = values.length;
         for (let i = 0; i < length; i++) {
             total_squared += this.squared(values[i]);
-        }
-
-        return this.sqrt(total_squared);
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       s.sqrt(total_squared);
     }
 
     static normalisasi(val, pembagi) {

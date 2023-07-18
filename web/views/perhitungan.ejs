@@ -1,3 +1,9 @@
+<%
+let topsisLength = topsis_models.length;
+let criteriaLength = criteria_models.length;
+let employeeLength = employee_models.length;
+%>
+
 <div class="accordion beginning" id="accordionExample">
     <div class="accordion-item">
         <h2 class="accordion-header">
@@ -23,41 +29,23 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama Karyawan</th>
-                                        <th>CR001</th>
-                                        <th>CR002</th>
-                                        <th>CR003</th>
-                                        <th>CR004</th>
-                                        <th>CR005</th>
+                                        <%
+                                        for (let i = 0; i < criteriaLength; i++) {
+                                        %>
+                                            <th><%= criteria_models[i].name %></th>
+                                        <% } %>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
+                                    <% for (let i = 0; i < topsisLength; i++) { %>
+                                        <tr>
+                                            <td><%= topsis_models[i].uid %></td>
+                                            <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
+                                            <% for (let j = 0; j < criteriaLength; j++) { %>
+                                                <td><%= topsis_models[i].scores[j].score %></td>
+                                            <% } %>
+                                        </tr>
+                                    <% } %>
                                 </tbody>
                             </table>
                             <div class="clearfix">
@@ -106,41 +94,23 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama Karyawan</th>
-                                        <th>CR001</th>
-                                        <th>CR002</th>
-                                        <th>CR003</th>
-                                        <th>CR004</th>
-                                        <th>CR005</th>
+                                        <%
+                                        for (let i = 0; i < criteriaLength; i++) {
+                                        %>
+                                            <th><%= criteria_models[i].name %></th>
+                                        <% } %>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                <% for (let i = 0; i < topsisLength; i++) { %>
                                     <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
+                                        <td><%= topsis_models[i].uid %></td>
+                                        <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
+                                        <% for (let j = 0; j < criteriaLength; j++) { %>
+                                            <td><%= topsis_models[i].ternormalisasi[j] %></td>
+                                        <% } %>
                                     </tr>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
+                                <% } %>
                                 </tbody>
                             </table>
                             <div class="clearfix">
@@ -189,41 +159,23 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama Karyawan</th>
-                                        <th>CR001</th>
-                                        <th>CR002</th>
-                                        <th>CR003</th>
-                                        <th>CR004</th>
-                                        <th>CR005</th>
+                                        <%
+                                        for (let i = 0; i < criteriaLength; i++) {
+                                        %>
+                                            <th><%= criteria_models[i].name %></th>
+                                        <% } %>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                        <td>2</td>
-                                    </tr>
+                                    <% for (let i = 0; i < topsisLength; i++) { %>
+                                        <tr>
+                                            <td><%= topsis_models[i].uid %></td>
+                                            <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
+                                            <% for (let j = 0; j < criteriaLength; j++) { %>
+                                                <td><%= topsis_models[i].terbobot[j] %></td>
+                                            <% } %>
+                                        </tr>
+                                    <% } %>
                                 </tbody>
                             </table>
                             <div class="clearfix">
@@ -270,11 +222,9 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Kedisplinan</th>
-                                        <th>Hasil Kerja</th>
-                                        <th>Pengetahuan</th>
-                                        <th>Sikap</th>
-                                        <th>Kerja Sama</th>
+                                        <% for (let i = 0; i < criteriaLength; i++) { %>
+                                            <th><%= criteria_models[i].name %></th>
+                                        <% } %>
                                     </tr>
                                     <tr>
                                         <th>y1+</th>
@@ -286,25 +236,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
+                                        <% for (let i = 0; i < criteriaLength; i++) { %>
+                                            <td><%= list_a_plus[i] %></td>
+                                        <% } %>
                                     </tr>
                                 </tbody>
                             </table>
@@ -340,11 +274,9 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Kedisplinan</th>
-                                        <th>Hasil Kerja</th>
-                                        <th>Pengetahuan</th>
-                                        <th>Sikap</th>
-                                        <th>Kerja Sama</th>
+                                        <% for (let i = 0; i < criteriaLength; i++) { %>
+                                            <th><%= criteria_models[i].name %></th>
+                                        <% } %>
                                     </tr>
                                     <tr>
                                         <th>y1-</th>
@@ -356,25 +288,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
-                                        <td>2.5</td>
+                                        <% for (let i = 0; i < criteriaLength; i++) { %>
+                                            <td><%= list_a_minus[i] %></td>
+                                        <% } %>
                                     </tr>
                                 </tbody>
                             </table>
@@ -427,21 +343,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                    <td>Muhammad Fauzan Muharram</td>
-                                    <td>2.5</td>
-                                </tr>
-                                <tr>
-                                    <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                    <td>Muhammad Fauzan Muharram</td>
-                                    <td>2.5</td>
-                                </tr>
-                                <tr>
-                                    <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                    <td>Muhammad Fauzan Muharram</td>
-                                    <td>2.5</td>
-                                </tr>
+                                <% for (let i = 0; i < topsisLength; i++) { %>
+                                    <tr>
+                                        <td><%= topsis_models[i].uid %></td>
+                                        <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
+                                        <td><%= topsis_models[i].nilaiDPlus %></td>
+                                    </tr>
+                                <% } %>
                             </tbody>
                         </table>
                         <div class="clearfix">
@@ -482,21 +390,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                    <td>Muhammad Fauzan Muharram</td>
-                                    <td>2.5</td>
-                                </tr>
-                                <tr>
-                                    <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                    <td>Muhammad Fauzan Muharram</td>
-                                    <td>2.5</td>
-                                </tr>
-                                <tr>
-                                    <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                    <td>Muhammad Fauzan Muharram</td>
-                                    <td>2.5</td>
-                                </tr>
+                                <% for (let i = 0; i < topsisLength; i++) { %>
+                                    <tr>
+                                        <td><%= topsis_models[i].uid %></td>
+                                        <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
+                                        <td><%= topsis_models[i].nilaiDMinus %></td>
+                                    </tr>
+                                <% } %>
                             </tbody>
                         </table>
                         <div class="clearfix">
@@ -550,24 +450,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2,6</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2,7</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>cdb7cf45de925907ce61a87d323464ab</td>
-                                        <td>Muhammad Fauzan Muharram</td>
-                                        <td>2.9</td>
-                                    </tr>
+                                    <% for (let i = 0; i < topsisLength; i++) { %>
+                                        <tr>
+                                            <td><%= i + 1 %></td>
+                                            <td><%= topsis_models[i].uid %></td>
+                                            <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
+                                            <td><%= topsis_models[i].hasil %></td>
+                                        </tr>
+                                    <% } %>
                                 </tbody>
                             </table>
                             <div class="clearfix">

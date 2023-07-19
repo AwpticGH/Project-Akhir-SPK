@@ -10,7 +10,9 @@ class CriteriaController extends BaseController {
     async readAll() {
         let schema = CriteriaSchema.getNewSchema();
         super.mongooseModel = mongoose.model(DatabaseSCollectionDictionary.CRITERIA, schema);
-        return await super._readAll();
+        let result = await super._readAll();
+        mongoose.deleteModel(DatabaseSCollectionDictionary.CRITERIA);
+        return result;
     }
 }
 

@@ -24,7 +24,7 @@ class BaseController {
 
     async _createOne() {
         let result = false;
-        DatabaseConfig.connect().catch((err) => {
+        await DatabaseConfig.connect().catch((err) => {
             console.error(err);
         });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
@@ -61,7 +61,7 @@ class BaseController {
 
     async _createMany() {
         let result = [];
-        DatabaseConfig.connect().catch((err) => {
+        await DatabaseConfig.connect().catch((err) => {
             console.error(err);
         });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
@@ -109,12 +109,12 @@ class BaseController {
 
     async _readOne() {
         let result;
-        DatabaseConfig.connect().catch((err) => {
+        await DatabaseConfig.connect().catch((err) => {
             console.error(err);
         });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
             if (this.#myModel instanceof BaseModel && this.#mongooseModel.prototype instanceof MongooseModel) {
-                let query = this.#mongooseModel.findOne(this.#myModel.toJSON());
+                let query = this.#mongooseModel.findOne().where(this.#myModel.toJSON());
                 try {
                     result = await query.exec();
                 } catch (error) {
@@ -143,12 +143,12 @@ class BaseController {
 
     async _readMany() {
         let result;
-        DatabaseConfig.connect().catch((error) => {
+        await DatabaseConfig.connect().catch((error) => {
             console.error(error);
         });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
             if (this.#myModel instanceof BaseModel && this.#mongooseModel.prototype instanceof MongooseModel) {
-                let query = this.#mongooseModel.find(this.#myModel);
+                let query = this.#mongooseModel.find().where(this.#myModel.toJSON());
                 try {
                     result = await query.exec();
                 } catch (error) {
@@ -177,7 +177,7 @@ class BaseController {
 
     async _readAll() {
         let result;
-        DatabaseConfig.connect().catch((error) => {
+        await DatabaseConfig.connect().catch((error) => {
             console.error(error);
         });
         if (this.#mongooseModel !== undefined && this.#mongooseModel.prototype instanceof MongooseModel) {
@@ -202,12 +202,12 @@ class BaseController {
 
     async _updateOne() {
         let result = false;
-        DatabaseConfig.connect().catch((err) => {
+        await DatabaseConfig.connect().catch((err) => {
             console.error(err);
         });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
             if (this.#myModel instanceof BaseModel && this.#mongooseModel.prototype instanceof MongooseModel) {
-                let query = this.#mongooseModel.findOneAndUpdate(this.#myModel.toJSON());
+                let query = this.#mongooseModel.findByIdAndUpdate(this.#myModel._id, this.#myModel.toJSON());
                 try {
                     result = await query.exec();
                 } catch (error) {
@@ -236,12 +236,12 @@ class BaseController {
 
     async _deleteOne() {
         let result = false;
-        DatabaseConfig.connect().catch((err) => {
+        await DatabaseConfig.connect().catch((err) => {
             console.error(err);
         });
         if (this.#myModel !== undefined && this.#mongooseModel !== undefined) {
             if (this.#myModel instanceof BaseModel && this.#mongooseModel.prototype instanceof MongooseModel) {
-                let query = this.#mongooseModel.findOneAndDelete(this.#myModel.toJSON());
+                let query = this.#mongooseModel.findByIdAndDelete(this.#myModel.toJSON());
                 try {
                     result = await query.exec();
                 } catch (error) {

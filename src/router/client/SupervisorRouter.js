@@ -7,7 +7,6 @@ const SupervisorModel = require("../../model/children/database/SupervisorModel")
 const SupervisorController = require("../../controller/children/database/SupervisorController");
 
 const express = require("express");
-const AuthenticationFlag = require("../../flag/AuthenticationFlag");
 const router = express.Router();
 
 router.get(RouterDictionary.LOGIN, (request, response) => {
@@ -32,7 +31,7 @@ router.post(RouterDictionary.LOGIN, async (request, response) => {
             request.session[SessionVariableDictionary.SUPERVISOR_MODEL] = model;
             return response.redirect(RouterDictionary.HOME);
         } else {
-            request.session[SessionVariableDictionary.ALERT] = AlertDictionary.LOGIN_FAILED;
+            request.session[SessionVariableDictionary.ALERT] = AlertDictionary.INVALID_CREDENTIAL;
             return response.redirect(RouterDictionary.LOGIN);
         }
     }
@@ -64,7 +63,7 @@ router.post(RouterDictionary.SUPERVISOR_UPDATE, async (request, response) => {
 
             let controller = new SupervisorController();
             let updated = await controller.updateOne(model);
-            request.session[SessionVariableDictionary.ALERT] = updated ? AlertDictionary.UPDATE_SUCCESS : AlertDictionary.UPDATE_FAILED;
+            request.session[SessionVariableDictionary.ALERT] = updated ? AlertDictionary.SUPERVISOR_UPDATE_SUCCESS : AlertDictionary.SUPERVISOR_UPDATE_FAILED;
             request.session[SessionVariableDictionary.SUPERVISOR_MODEL] = model;
         } else {
             request.session[SessionVariableDictionary.ALERT] = AlertDictionary.PASSWORD_EQUAL;

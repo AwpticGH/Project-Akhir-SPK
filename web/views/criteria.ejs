@@ -16,36 +16,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>CR001</td>
-                        <td>Kedisplinan</td>
-                        <td>0.2</td>
-                        <td>Benefit</td>
-                    </tr>
-                    <tr>
-                        <td>CR002</td>
-                        <td>Hasil Kerja</td>
-                        <td>0.25</td>
-                        <td>Benefit</td>
-                    </tr>
-                    <tr>
-                        <td>CR003</td>
-                        <td>Pengetahuan</td>
-                        <td>0.2</td>
-                        <td>Benefit</td>
-                    </tr>
-                    <tr>
-                        <td>CR004</td>
-                        <td>Sikap</td>
-                        <td>0.2</td>
-                        <td>Benefit</td>
-                    </tr>
-                    <tr>
-                        <td>CR005</td>
-                        <td>Kerja Sama</td>
-                        <td>0.15</td>
-                        <td>Benefit</td>
-                    </tr>        
+                    <%
+                    let length = criterias.length;
+                    let typeLength = criteria_types.length;
+                    for (let i = 0; i < length; i++) {
+                        let criteria = criterias[i];
+                    %>
+                        <tr>
+                            <td><%= criteria._id %></td>
+                            <td><%= criteria.name %></td>
+                            <td><%= criteria.point %></td>
+                            <% for (let j = 0; j < typeLength; j++) {
+                                let type = criteria_types[j];
+                                if (type._id === criteria.criteria_type_uid) {
+                            %>
+                                    <td><%= type.type %></td>
+                            <%
+                                }
+                            }
+                            %>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
             </div>

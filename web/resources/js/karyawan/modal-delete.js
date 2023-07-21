@@ -1,5 +1,9 @@
-const inputEmployeeUid = document.querySelector("#input-employee-uid");
+const deleteInputEmployeeUid = document.querySelector("#delete-input-employee-uid");
+const deleteInputEmployeeFirstName = document.querySelector("#delete-input-employee-first-name");
+const deleteInputEmployeeLastName = document.querySelector("#delete-input-employee-last-name");
 
-function setInputValue(value) {
-    inputEmployeeUid.value = value;
+function setDeleteInputValue(uid, firstName, lastName) {
+    deleteInputEmployeeUid.value = uid;
+    deleteInputEmployeeFirstName.value = firstName;
+    deleteInputEmployeeLastName.value = lastName;
 }

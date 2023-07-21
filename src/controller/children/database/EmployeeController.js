@@ -57,6 +57,40 @@ class EmployeeController extends BaseController {
 
         return result;
     }
+
+    async updateOne(model) {
+        let result = false;
+        if (model instanceof EmployeeModel) {
+            let schema = EmployeeSchema.getNewSchema();
+            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.EMPLOYEE, schema);
+
+            super.myModel = model;
+            super.mongooseModel = mongooseModel;
+            result = await super._updateOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.EMPLOYEE);
+        } else {
+            throw new Error(`${__filename}: model must be of type EmployeeModel`);
+        }
+
+        return result;
+    }
+
+    async deleteOne(model) {
+        let result = false;
+        if (model instanceof EmployeeModel) {
+            let schema = EmployeeSchema.getNewSchema();
+            let mongooseModel = mongoose.model(DatabaseSCollectionDictionary.EMPLOYEE, schema);
+
+            super.myModel = model;
+            super.mongooseModel = mongooseModel;
+            result = await super._deleteOne();
+            mongoose.deleteModel(DatabaseSCollectionDictionary.EMPLOYEE);
+        } else {
+            throw new Error(`${__filename}: model must be of type EmployeeModel`);
+        }
+
+        return result;
+    }
 }
 
 module.exports = EmployeeController;

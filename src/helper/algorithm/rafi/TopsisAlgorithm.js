@@ -29,7 +29,7 @@ class TopsisAlgorithm {
     static hitungAPlus(values, bobot) {
         let result = 0;
         if (bobot === "benefit" || bobot === "cost") {
-            result = bobot === "benefit" ? Math.max(values) : Math.min(values);
+            result = bobot === "benefit" ? Math.max.apply(Math, values) : Math.min.apply(Math, values);
         } else {
             throw new Error(`${__filename}: bobot must either be 'benefit' or 'cost'`);
         }
@@ -39,7 +39,7 @@ class TopsisAlgorithm {
     static hitungAMinus(values, bobot) {
         let result = 0;
         if (bobot === "benefit" || bobot === "cost") {
-            result = bobot === "benefit" ? Math.min(values) : Math.max(values);
+            result = bobot === "benefit" ? Math.min.apply(Math, values) : Math.max.apply(Math, values);
         } else {
             throw new Error(`${__filename}: bobot must either be 'benefit' or 'cost'`);
         }

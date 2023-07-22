@@ -2,6 +2,18 @@
 let topsisLength = topsis_models.length;
 let criteriaLength = criteria_models.length;
 let employeeLength = employee_models.length;
+let pagination = 5;
+let pages = topsisLength > pagination ? Math.ceil(topsisLength / pagination) : 1;
+
+let matrixPage = Number.parseInt(request.query["matrix-page"]) || 1;
+let matrixStart = (matrixPage * pagination) - pagination;
+let matrixEnd = matrixPage === pages ? topsisLength : matrixStart + pagination;
+
+let ternormalisasiPage = Number.parseInt(request.query["ternormalisasi-page"]) || 1;
+let terbobotPage = Number.parseInt(request.query["terbobot-page"]) || 1;
+let jarakIdealPositifPage = Number.parseInt(request.query["jarak-ideal-positif-page"]) || 1;
+let jarakIdealNegatifPage = Number.parseInt(request.query["jarak-ideal-negatif-page"]) || 1;
+let nilaiPreferensiPage = Number.parseInt(request.query["nilai-preferensi-page"]) || 1;
 %>
 
 <div class="accordion beginning" id="accordionExample">
@@ -37,7 +49,7 @@ let employeeLength = employee_models.length;
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% for (let i = 0; i < topsisLength; i++) { %>
+                                    <% for (let i = matrixStart; i < matrixEnd; i++) { %>
                                         <tr>
                                             <td><%= topsis_models[i].uid %></td>
                                             <td><%= `${topsis_models[i].first_name} ${topsis_models[i].last_name}` %></td>
@@ -52,15 +64,19 @@ let employeeLength = employee_models.length;
                                 <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination pagination-sm justify-content-end">
-                                        <li class="page-item disabled">
-                                            <a class="page-link">Previous</a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
+                                        <% if (matrixPage > 1) { %>
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="<%= `${RouterDictionary.MATRIX_SCORE_SHOW}?matrix-page=${matrixPage - 1}` %>">Previous</a>
+                                            </li>
+                                        <% } %>
+                                        <% for (let i = 1; i <= pages; i++) { %>
+                                            <li class="page-item <%= matrixPage === i ? "active" : "" %>"><a class="page-link" href="<%= `${RouterDictionary.MATRIX_SCORE_SHOW}?matrix-page=${i}` %>"><%= i %></a></li>
+                                        <% } %>
+                                        <% if (matrixPage !== pages) { %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="<%= `${RouterDictionary.MATRIX_SCORE_SHOW}?matrix-page=${matrixPage + 1}` %>">Next</a>
+                                            </li>
+                                        <% } %>
                                     </ul>
                                 </nav>
                             </div>

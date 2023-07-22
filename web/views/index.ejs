@@ -32,15 +32,34 @@
       </h2>
       <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong>
-          <p>Est labore voluptate ex anim do ad qui culpa qui qui. In est fugiat exercitation quis consectetur et deserunt. Ullamco laboris officia laborum dolore est. Cillum eu nulla excepteur cupidatat do ad velit do ullamco. Et cillum consectetur sunt magna.</p>
-          <ul>
-              <li>Quis consequat duis ad est cupidatat aute esse exercitation sint culpa veniam anim cupidatat.</li>
-              <li>Quis consequat duis ad est cupidatat aute esse exercitation sint culpa veniam anim cupidatat.</li>
-              <li>Quis consequat duis ad est cupidatat aute esse exercitation sint culpa veniam anim cupidatat.</li>
-              <li>Quis consequat duis ad est cupidatat aute esse exercitation sint culpa veniam anim cupidatat.</li>
-              <li>Quis consequat duis ad est cupidatat aute esse exercitation sint culpa veniam anim cupidatat.</li>
-          </ul>
+          <p>Menentukan matriks keputusan:
+
+              Identifikasi kriteria yang relevan untuk evaluasi alternatif.
+              Berikan bobot pada setiap kriteria sesuai dengan tingkat kepentingannya.
+              Nilai-nilai alternatif di setiap kriteria dimasukkan ke dalam matriks keputusan.
+              Normalisasi matriks keputusan:
+
+              Normalisasi dilakukan untuk menghilangkan dampak dari perbedaan skala antara kriteria.
+              Setiap elemen dalam matriks keputusan dibagi dengan akar kuadrat dari jumlah kuadrat setiap kolom.
+              Membuat matriks keputusan ternormalisasi terbobot:
+
+              Setiap elemen dalam matriks keputusan ternormalisasi dikalikan dengan bobot yang sesuai untuk kriteria tersebut.
+              Menghitung solusi ideal positif (A+) dan solusi ideal negatif (A-):
+
+              Solusi ideal positif (A+) adalah vektor yang terdiri dari nilai maksimum untuk setiap kriteria.
+              Solusi ideal negatif (A-) adalah vektor yang terdiri dari nilai minimum untuk setiap kriteria.
+              Menghitung jarak antara setiap alternatif dengan solusi ideal positif (D+) dan solusi ideal negatif (D-):
+
+              Jarak Euclidean dihitung antara setiap alternatif dengan A+ dan A-.
+              Jarak D+ adalah jarak antara alternatif ke A+.
+              Jarak D- adalah jarak antara alternatif ke A-.
+              Menghitung skor preferensi relatif:
+
+              Skor preferensi relatif (V) dihitung sebagai rasio antara jarak D- dengan jumlah jarak D+ dan D-.
+              Merangking alternatif:
+
+              Alternatif dengan skor preferensi relatif tertinggi dianggap sebagai pilihan terbaik.
+              Metode TOPSIS membantu pengambil keputusan dalam mengevaluasi alternatif dengan mempertimbangkan banyak aspek atau kriteria. Dengan menggunakan konsep solusi ideal dan solusi anti-ideal, metode ini memberikan hasil prioritas yang objektif berdasarkan tingkat kesamaan dengan solusi yang diinginkan dan tingkat perbedaan dengan solusi yang tidak diinginkan.</p>
         </div>
       </div>
     </div>

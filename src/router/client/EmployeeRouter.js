@@ -10,7 +10,6 @@ const DivisionModel = require("../../model/children/database/DivisionModel");
 const DivisionController = require("../../controller/children/database/DivisionController");
 const MatrixScoreModel = require("../../model/children/database/MatrixScoreModel");
 const MatrixScoreController = require("../../controller/children/database/MatrixScoreController");
-const CriteriaModel = require("../../model/children/database/CriteriaModel");
 const CriteriaController = require("../../controller/children/database/CriteriaController");
 
 const express = require("express");

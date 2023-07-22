@@ -5,7 +5,6 @@ const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary");
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const MatrixScoreModel = require("../../model/children/database/MatrixScoreModel");
 const MatrixScoreController = require("../../controller/children/database/MatrixScoreController");
-const TopsisModel = require("../../model/children/algorithm/benaya/TopsisModel");
 const TopsisController = require("../../controller/children/algorithm/rafi/TopsisController");
 
 const express = require("express");

@@ -5,20 +5,58 @@ const AlertDictionary = require("../../dictionary/web/alert/AlertDictionary");
 const StringGenerator = require("../../helper/generator/StringGenerator");
 const MatrixScoreModel = require("../../model/children/database/MatrixScoreModel");
 const MatrixScoreController = require("../../controller/children/database/MatrixScoreController");
-const TopsisModel = require("../../model/children/algorithm/benaya/TopsisModel");
 const TopsisController = require("../../controller/children/algorithm/rafi/TopsisController");
 
 const express = require("express");
+const CriteriaTypeController = require("../../controller/children/database/CriteriaTypeController");
+const CriteriaController = require("../../controller/children/database/CriteriaController");
+const EmployeeModel = require("../../model/children/database/EmployeeModel");
+const EmployeeController = require("../../controller/children/database/EmployeeController");
+const DivisionModel = require("../../model/children/database/DivisionModel");
+const DivisionController = require("../../controller/children/database/DivisionController");
 const router = express.Router();
 
 router.get(RouterDictionary.MATRIX_SCORE_SHOW, async (request, response) => {
+    let criteriaTypeController = new CriteriaTypeController();
+    let criteriaTypeModels = await criteriaTypeController.readAll();
+
+    let criteriaController = new CriteriaController();
+    let criteriaModels = await criteriaController.readAll();
+
+    let divisionModel = new DivisionModel();
+    divisionModel._id = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].division_uid;
+    let divisionController = new DivisionController();
+    divisionModel = await divisionController.readOne(divisionModel);
+
+    let employeeModels = new EmployeeModel();
+    employeeModels.division_uid = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].division_uid;
+    let employeeController = new EmployeeController();
+    employeeModels = await employeeController.readMany(employeeModels);
+
+    let length = employeeModels.length;
+    let matrixScoreModels = [];
+    let matrixScoreController = new MatrixScoreController();
+    for (let i = 0; i < length; i++) {
+        let employee = employeeModels[i];
+        let matrixScoreModel = new MatrixScoreModel();
+        matrixScoreModel.employee_uid = employee._id;
+        matrixScoreModel = await matrixScoreController.readMany(matrixScoreModel);
+        matrixScoreModels.push(matrixScoreModel);
+    }
+
     let controller = new TopsisController();
-    let topsisModels = await controller.readAll(request);
+    let result = await controller.readAll(criteriaTypeModels, criteriaModels, divisionModel, employeeModels, matrixScoreModels);
 
     return response.render("perhitungan", {
         layout: "static/main",
         page_title: "Perhitungan",
-        topsis_models: topsisModels
+        topsis_models: result.topsis_models,
+        list_a_plus: result.list_a_plus,
+        list_a_minus: result.list_a_minus,
+        criteria_type_models: criteriaTypeModels,
+        criteria_models: criteriaModels,
+        employee_models: employeeModels,
+        division_model: divisionModel
     });
 });
 

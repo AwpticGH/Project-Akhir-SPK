@@ -6,7 +6,7 @@ class TopsisAlgorithm {
     const pembagi = {};
 
     for (let key of keys) {
-      if (key !== 'nama') {
+      if (key !== '0') {
         const squaredSum = data.reduce((sum, karyawan) => sum + (karyawan[key] ** 2), 0);
         pembagi[key] = Math.sqrt(squaredSum);
       }
@@ -42,7 +42,7 @@ class TopsisAlgorithm {
       const hasil = {};
       for (const key of keys) {
         if (key !== 'nama') {
-          hasil[key] = karyawan[key] * bobot[key];
+          hasil[key] = karyawan[key] *bobot[key];
         }
       }
       matriks.push(hasil);

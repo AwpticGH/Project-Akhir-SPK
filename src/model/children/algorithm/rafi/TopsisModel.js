@@ -2,6 +2,7 @@ const BaseModel = require("../../../parent/BaseModel");
 
 class TopsisModel extends BaseModel {
 
+    _uid;
     _first_name;
     _last_name;
     _scores = [];
@@ -11,6 +12,14 @@ class TopsisModel extends BaseModel {
     _nilaiDMinus;
     _hasil;
     _rank;
+
+    get uid() {
+        return this._uid;
+    }
+
+    set uid(value) {
+        this._uid = value;
+    }
 
     get first_name() {
         return this._first_name;

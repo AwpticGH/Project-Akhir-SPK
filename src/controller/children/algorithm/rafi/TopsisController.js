@@ -1,55 +1,16 @@
 const BaseController = require("../../../parent/BaseController");
-const WebVariableDictionary = require("../../../../dictionary/web/variable/WebVariableDictionary");
-const SessionVariableDictionary = require("../../../../dictionary/web/variable/SessionVariableDictionary");
-const CriteriaTypeModel = require("../../../../model/children/database/CriteriaTypeModel");
-const CriteriaTypeController = require("../../database/CriteriaTypeController");
-const CriteriaModel = require("../../../../model/children/database/CriteriaModel");
-const CriteriaController = require("../../database/CriteriaController");
-const DivisionModel = require("../../../../model/children/database/DivisionModel");
-const DivisionController = require("../../database/DivisionController");
-const EmployeeModel = require("../../../../model/children/database/EmployeeModel");
-const EmployeeController = require("../../database/EmployeeController");
-const MatrixScoreModel = require("../../../../model/children/database/MatrixScoreModel");
-const MatrixScoreController = require("../../database/MatrixScoreController");
 const TopsisModel = require("../../../../model/children/algorithm/rafi/TopsisModel");
 const TopsisAlgorithm = require("../../../../helper/algorithm/rafi/TopsisAlgorithm");
 const SortingAlgorithm = require("../../../../helper/algorithm/sorting/SortingAlgorithm");
 
 class TopsisController extends BaseController {
 
-    async readAll(request) {
+    async readAll(criteriaTypeModels, criteriaModels, divisionModel, employeeModels, matrixScoreModels) {
         let result = [];
 
-        let criteriaTypeController = new CriteriaTypeController();
-        let criteriaTypes = await criteriaTypeController.readAll();
-
-        let criteriaController = new CriteriaController();
-        let criterias = await criteriaController.readAll();
-
-        let employeeModels = new EmployeeModel();
-        employeeModels.division_uid = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].division_uid;
-        let employeeController = new EmployeeController();
-        employeeModels = await employeeController.readMany(employeeModels);
-
-        let divisionModel = new DivisionModel();
-        divisionModel._id = request.session[SessionVariableDictionary.SUPERVISOR_MODEL].division_uid;
-        let divisionController = new DivisionController();
-        divisionModel = await divisionController.readOne(divisionModel);
-
-        let length = employeeModels.length;
-        let matrixScoreModels = [];
-        let matrixScoreController = new MatrixScoreController();
-        for (let i = 0; i < length; i++) {
-            let employee = employeeModels[i];
-            let matrixScoreModel = new MatrixScoreModel();
-            matrixScoreModel.employee_uid = employee._id;
-            matrixScoreModel = await matrixScoreController.readMany(matrixScoreModel);
-            matrixScoreModels.push(matrixScoreModel);
-        }
-
-        length = matrixScoreModels.length;
+        let length = matrixScoreModels.length;
         let employeeLength = employeeModels.length;
-        let criteriaLength = criterias.length;
+        let criteriaLength = criteriaModels.length;
         let index = 0;
 
         for (let i = 0; i < length; i++) {
@@ -60,6 +21,7 @@ class TopsisController extends BaseController {
                 for (let k = 0; k < employeeLength; k++) {
                     if (employeeModels[k]._id === matrixScoreModels[i][0].employee_uid) {
                         // set name
+                        topsisModel.uid = employeeModels[k]._id;
                         topsisModel.first_name = employeeModels[k].first_name;
                         topsisModel.last_name = employeeModels[k].last_name;
                         break;
@@ -67,15 +29,13 @@ class TopsisController extends BaseController {
                 }
 
                 for (let j = 0; j < criteriaLength; j++) {
-                    let index = (i * criteriaLength) + j;
+                    index = (i * criteriaLength) + j;
 
                     // set scores
                     // console.log(matrixScoreModels[i][j]);
                     topsisModel.scores[j] = {};
-                    topsisModel.scores[j].criteria = criterias[j].name;
+                    topsisModel.scores[j].criteria = criteriaModels[j].name;
                     topsisModel.scores[j].score = Number.parseInt(matrixScoreModels[i][j].score);
-                    if (matrixScoreModels[index] !== undefined && matrixScoreModels[index].length !== 0) {
-                    }
                 }
 
                 result.push(topsisModel);
@@ -108,7 +68,7 @@ class TopsisController extends BaseController {
         // row by column
         for (let i = 0; i < criteriaLength; i++) {
             for (let j = 0; j < length; j++) {
-                result[j].terbobot[i] = TopsisAlgorithm.bobot(result[j].ternormalisasi[i], criterias[i].point);
+                result[j].terbobot[i] = TopsisAlgorithm.bobot(result[j].ternormalisasi[i], criteriaModels[i].point);
             }
         }
 
@@ -123,8 +83,8 @@ class TopsisController extends BaseController {
                 }
                 temp[i][j] = result[j].terbobot[i];
             }
-            listAPlus[i] = TopsisAlgorithm.hitungAPlus(temp[i], criteriaTypes[0].type);
-            listAMinus[i] = TopsisAlgorithm.hitungAMinus(temp[i], criteriaTypes[0].type);
+            listAPlus[i] = TopsisAlgorithm.hitungAPlus(temp[i], criteriaTypeModels[0].type);
+            listAMinus[i] = TopsisAlgorithm.hitungAMinus(temp[i], criteriaTypeModels[0].type);
         }
 
         // column by row
@@ -141,7 +101,11 @@ class TopsisController extends BaseController {
             console.log("\n");
         });
 
-        return result;
+        return {
+            topsis_models: result,
+            list_a_plus: listAPlus,
+            list_a_minus: listAMinus
+        };
     }
 }
 

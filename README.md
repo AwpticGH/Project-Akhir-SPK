@@ -9,7 +9,7 @@
 ## Spesifikasi (v:1.0)
 ### Database :
 - Table :
-1. employees
+1. employeess
     - _id
     - first_name
     - last_name

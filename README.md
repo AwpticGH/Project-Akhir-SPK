@@ -1,7 +1,7 @@
 # Aplikasi Topsis
 
 ## Dibuat Oleh
-1. Alfian (UI/UX)
+1. Alfian (UI/UX)s
 2. Benaya (Backend)
 3. Fauzan (Frontend)
 4. Rafi Fajar (Frontend/Backend)
